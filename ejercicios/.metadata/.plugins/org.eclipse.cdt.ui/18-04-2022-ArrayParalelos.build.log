@@ -1,0 +1,7 @@
+20:38:13 **** Incremental Build of configuration Debug for project 18-04-2022-ArrayParalelos ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\18-04-2022-ArrayParalelos.o" "..\\src\\18-04-2022-ArrayParalelos.c" 
+gcc -o 18-04-2022-ArrayParalelos.exe "src\\18-04-2022-ArrayParalelos.o" 
+
+20:38:14 Build Finished. 0 errors, 0 warnings. (took 507ms)
+

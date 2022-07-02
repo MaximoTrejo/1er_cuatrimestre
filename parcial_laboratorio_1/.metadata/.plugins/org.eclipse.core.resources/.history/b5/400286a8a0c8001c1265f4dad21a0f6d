@@ -1,0 +1,22 @@
+/*
+ * libraryArtistType.h
+ *
+ *  Created on: 30 abr. 2022
+ *      Author: maxim
+ */
+
+#ifndef LIBRARYARTISTTYPE_H_
+#define LIBRARYARTISTTYPE_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "libraryAlbum.h"
+#include "libraryArtist.h"
+#include "libraryArtistType.h"
+#include "libraryGender.h"
+#include "utn.h"
+
+
+#endif /* LIBRARYARTISTTYPE_H_ */

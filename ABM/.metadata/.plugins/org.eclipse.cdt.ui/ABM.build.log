@@ -1,0 +1,7 @@
+15:29:56 **** Incremental Build of configuration Debug for project ABM ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ABM.o" "..\\src\\ABM.c" 
+gcc -o ABM.exe "src\\ABM.o" "src\\utn.o" 
+
+15:29:57 Build Finished. 0 errors, 0 warnings. (took 494ms)
+

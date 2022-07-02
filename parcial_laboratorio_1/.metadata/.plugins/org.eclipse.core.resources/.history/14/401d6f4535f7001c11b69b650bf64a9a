@@ -1,0 +1,64 @@
+/*
+ ============================================================================
+ Name        : PARCIAL[2].c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "LinkedList.h"
+#include "Controller.h"
+#include "computer.h"
+#include "utn.h"
+#include "menu.h"
+#include "parser.h"
+
+
+int main(void) {
+
+	setbuf(stdout, NULL);
+
+	int opcion;
+	LinkedList * lComputer = ll_newLinkedList();
+
+	do{
+		opcionesMenu();
+		if(utn_getInt(&opcion, "elegi una opcion\n", "error", 0, 5, REINTENTOS)==0){
+			switch(opcion){
+
+			case 1:
+				if(controller_loadFromText("datos_SP.csv", lComputer)){
+					printf("*Archivo  no se cargado correctamente\n");
+				}else{
+					printf("No se pudo cargar el archivo\n");
+				}
+				break;
+			case 2:
+				if(controller_sortPassenger(lComputer)==0){
+					printf("se ordeno correctamente\n");
+				}else{
+					printf("no se ordeno correctamente\n");
+				}
+				break;
+
+
+			}
+
+		}
+
+	}while(opcion!=10);
+
+
+
+
+
+
+
+
+
+	return EXIT_SUCCESS;
+}

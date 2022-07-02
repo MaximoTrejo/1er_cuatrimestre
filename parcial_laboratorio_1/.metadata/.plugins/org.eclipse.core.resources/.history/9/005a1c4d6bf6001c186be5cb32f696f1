@@ -1,0 +1,80 @@
+/*
+ ============================================================================
+ 1. (4 puntos) Crear un array de caracteres (con vocales y consonantes) en memoria dinámica y
+ una función que reciba dicho array. La función deberá ajustar el tamaño del array a la cantidad
+ consonantes que haya en el mismo quedándose únicamente con los elementos que cumplan con dicha característica.
+ Ej: (perro)->(prr)
+
+3.  (2 Puntos) Crear una función que guarde en un archivo binario el contenido del
+array generado en el punto 1. Leerlo en otra función y mostrarlo.
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+
+
+int main(void) {
+
+
+	 FILE * pFile;
+	 pFile = fopen("data.bin", "wb");
+
+	 char * aux;
+	 aux =(char*)malloc(sizeof(char)*5);
+
+	 aux[0]='p';
+	 aux[1]='e';
+	 aux[2]='r';
+	 aux[3]='r';
+	 aux[4]='o';
+
+
+	return EXIT_SUCCESS;
+}
+
+
+int leerfuncion(int * aux , int len ){
+	int retorno=-1;
+	for(int i =0;i<len;i++){
+		if(aux[i] == "e" || aux[i] == "o"){
+			delete(aux);
+
+
+			retorno=0;
+		}
+	}
+	return retorno;
+}
+
+void delete(char *this){
+	free(this);
+}
+
+int funcion(FILE * pFile, int * array){
+	int retorno=-1;
+	int leer;
+	char num[5];
+	while(!feof(pFile)){
+		leer=fprintf(pFile,"%[^,]",num);
+	}
+	fclose(pFile);
+	return retorno;
+}
+
+
+int mostrar(char * aux , int len){
+
+	int retorno=0;
+	if(aux!=NULL){
+
+		for(int i=0;i<len ;i++){
+
+			printf("%c",aux[i]);
+		}
+	}
+	return retorno;
+}

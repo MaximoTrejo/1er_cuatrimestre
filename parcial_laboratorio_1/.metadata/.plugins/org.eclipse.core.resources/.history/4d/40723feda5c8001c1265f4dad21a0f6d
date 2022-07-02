@@ -1,0 +1,32 @@
+/*
+ * libraryArtistMusic.c
+ *
+ *  Created on: 30 abr. 2022
+ *      Author: maxim
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#include "libraryArtistMusic.h"
+#include "utn.h"
+
+
+
+
+int  initArtist(artist listArtist[],int tam){
+
+	int i;
+	int retorno= -1;
+	if(listArtist != NULL && tam > 0){
+
+		for(i=0;i<tam;i++){
+			listPasajeros[i].isEmpty= LIBRE;
+
+		}
+		retorno=0;
+	}
+	return retorno;
+}

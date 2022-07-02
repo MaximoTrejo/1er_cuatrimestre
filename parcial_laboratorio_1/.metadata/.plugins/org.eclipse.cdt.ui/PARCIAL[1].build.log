@@ -1,0 +1,9 @@
+20:17:34 **** Rebuild of configuration Debug for project PARCIAL[1] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\PARCIAL[1].o" "..\\src\\PARCIAL[1].c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn.o" "..\\src\\utn.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\libraryArtistMusic.o" "..\\src\\libraryArtistMusic.c" 
+gcc -o PARCIAL[1].exe "src\\PARCIAL[1].o" "src\\libraryArtistMusic.o" "src\\utn.o" 
+
+20:17:35 Build Finished. 0 errors, 0 warnings. (took 1s.32ms)
+

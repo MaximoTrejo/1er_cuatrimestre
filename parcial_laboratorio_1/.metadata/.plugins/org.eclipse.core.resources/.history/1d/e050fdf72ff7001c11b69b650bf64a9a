@@ -1,0 +1,24 @@
+/*
+ * computer.h
+ *
+ *  Created on: 28 jun. 2022
+ *      Author: maxim
+ */
+
+#ifndef COMPUTER_H_
+#define COMPUTER_H_
+
+#define REINTENTOS 5
+#define TAM 500
+
+typedef struct
+{
+	int id;
+	char descripcion[50];
+	float precio;
+	char apellido[50];
+	int idTipo;
+
+}eComputer;
+
+#endif /* COMPUTER_H_ */

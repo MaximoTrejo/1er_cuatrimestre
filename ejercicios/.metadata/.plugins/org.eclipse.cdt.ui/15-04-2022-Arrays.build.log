@@ -1,0 +1,8 @@
+13:29:57 **** Rebuild of configuration Debug for project 15-04-2022-Arrays ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\funciones.o" "..\\src\\funciones.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\15-04-2022-Arrays.o" "..\\src\\15-04-2022-Arrays.c" 
+gcc -o 15-04-2022-Arrays.exe "src\\15-04-2022-Arrays.o" "src\\funciones.o" 
+
+13:29:58 Build Finished. 0 errors, 0 warnings. (took 864ms)
+

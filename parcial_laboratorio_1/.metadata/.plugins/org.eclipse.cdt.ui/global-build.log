@@ -1,0 +1,85 @@
+22:36:42 **** Rebuild of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\menu.o" "..\\src\\menu.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\computer.o" "..\\src\\computer.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Controller.o" "..\\src\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\PARCIAL[2].o" "..\\src\\PARCIAL[2].c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn.o" "..\\src\\utn.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LinkedList.o" "..\\src\\LinkedList.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:32:38 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\computer.o" "..\\src\\computer.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Controller.o" "..\\src\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\PARCIAL[2].o" "..\\src\\PARCIAL[2].c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LinkedList.o" "..\\src\\LinkedList.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:42:53 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\PARCIAL[2].o" "..\\src\\PARCIAL[2].c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Controller.o" "..\\src\\Controller.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:45:36 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:46:13 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:46:41 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:46:54 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:47:09 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:47:55 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:48:16 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:48:41 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:52:29 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+Info: Nothing to build for PARCIAL[2]
+Info: Nothing to build for PARCIAL[2]
+23:58:53 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+23:59:49 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Controller.o" "..\\src\\Controller.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+00:01:09 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\menu.o" "..\\src\\menu.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+Info: Nothing to build for PARCIAL[2]
+00:07:18 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\menu.o" "..\\src\\menu.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\PARCIAL[2].o" "..\\src\\PARCIAL[2].c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+Info: Nothing to build for PARCIAL[2]
+Info: Nothing to build for PARCIAL[2]
+00:11:10 **** Incremental Build of configuration Debug for project PARCIAL[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\menu.o" "..\\src\\menu.c" 
+gcc -o PARCIAL[2].exe "src\\Controller.o" "src\\LinkedList.o" "src\\PARCIAL[2].o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+Info: Nothing to build for PARCIAL[2]

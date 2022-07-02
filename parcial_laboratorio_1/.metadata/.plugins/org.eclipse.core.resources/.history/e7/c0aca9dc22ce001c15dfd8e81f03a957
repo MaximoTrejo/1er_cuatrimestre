@@ -1,0 +1,852 @@
+/*
+ * libraryArtistMusic.c
+ *
+ *  Created on: 30 abr. 2022
+ *      Author: maxim
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#include "libraryArtistMusic.h"
+#include "utn.h"
+//-------------------------------------------DECLARACION DE STATIC---------------------------------------------------
+static void printAlbum(album artistas);
+static void printGenero(gender genero);
+static void printTipoArtista(typeArtist tipoA);
+static void printArtista(artist tipoA);
+static int dameUnIdNuevo(void);
+static int seleccionarModificar(int *seleccionarMod);
+
+//----------------------------------------------------------PARTE DOS-----------------------------------------------------------------
+static void printTipoAlbum(typeAlbum tipoTA);
+static int dameUnIdNuevoTA(void);
+//------------------------------------------------------------INICIALIZAR-----------------------------------------------------------------------------------
+int  initArtist(album list[],int len){
+
+	int i;
+	int retorno= -1;
+	if(list != NULL && len > 0){
+
+		for(i=0;i<len;i++){
+			list[i].isEmpty= LIBRE;
+		}
+		retorno=0;
+	}
+	return retorno;
+}
+
+//-----------------------------------------------------------ALTA--------------------------------------------------
+int addArtist(album listAlbum[] , typeAlbum listTA[] ){
+	int retorno=-1;
+	char auxTitulo[TAM];
+	int auxDia;
+	int auxMes;
+	int auxAnio;
+	float auxImporte;
+	char auxDescripcion[TAM];
+	int tipoAlbum;
+
+
+	if(listAlbum != NULL){
+
+		if(utn_getCaracter(auxTitulo,TAM, "Ingresar el titulo", "Error\n", REINTENTOS)==0){
+			if(utn_getInt(&auxDia, "Ingrese dia","Error\n", 1, 31, REINTENTOS)==0){
+				if(utn_getInt(&auxMes,"Ingresar mes","Error\n", 1, 12, REINTENTOS)==0){
+					if(utn_getInt(&auxAnio, "Ingresar año", "Error\n", 1, 9999, REINTENTOS)==0){
+						if(utn_getNumeroFloat(&auxImporte, "Importe", "Error\n", 1, 9999, REINTENTOS)==0){
+							printf("TIPO DE ALBUM\n");
+							if(utn_getInt(&tipoAlbum,"[1]vunilo\n[2]cinta\n[3]CD\n", "Error\n", 1, 3, REINTENTOS)==0){
+								if(utn_getCaracter(auxDescripcion, TAM, "Ingrese la descripcion", "Error\n", REINTENTOS)==0){
+
+								strncpy(listAlbum->titulo,auxTitulo,sizeof(listAlbum->titulo));
+								listAlbum->fechaPubli.dia=auxDia;
+								listAlbum->fechaPubli.mes=auxMes;
+								listAlbum->fechaPubli.anio=auxAnio;
+
+								listAlbum->importe=auxImporte;
+								listAlbum->codAlbum=dameUnIdNuevo();
+								listAlbum->isEmpty=OCUPADO;
+
+								strncpy(listTA->descripcion,auxDescripcion,sizeof(listTA->descripcion));
+								listTA->codtypeAlmbum=dameUnIdNuevoTA();
+								listTA->isEmpty=OCUPADO;
+								retorno=0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	return retorno;
+}
+
+static int dameUnIdNuevoTA(void) //privada del archivo
+{
+	static int contador=3;
+	contador++;//es global : mantiene su valor
+	return contador;
+}
+
+
+static int dameUnIdNuevo(void) //privada del archivo
+{
+	static int contador=3;
+	contador++;//es global : mantiene su valor
+	return contador;
+}
+
+int bucarLibre(album artic[], int len)
+{
+	int retorno=-1;
+	int i;
+
+	if(artic !=NULL && len>0)
+	{
+		for(i=0; i<len ;i++)
+		{
+			if(artic[i].isEmpty==LIBRE)
+			{
+				retorno=i;
+				break;
+			}
+		}
+	}
+	return retorno;
+}
+
+//------------------------------------------------------------------------IMPRIMIR-----------------------------------------------------------------------------------
+static void printAlbum(album alb){//paso la dreccion de memoria , apunta a la direccion de memoria del indice donde se encuentra el dato
+	printf("%d\t%s,\t%d\t,%d\t,%d\t,%f\n",alb.codAlbum, alb.titulo,alb.fechaPubli.dia,alb.fechaPubli.mes,alb.fechaPubli.anio,alb.importe);
+}
+
+void imprimirAlbum(album list[], int len) {
+int i;
+	if(list != NULL && len > 0 ) {
+		printf("ID\tTITULO\t\tDIA\tMES\tAÑO\tIMPORTE\t\n");
+		for(i=0; i<len; i++) {
+			if(list[i].isEmpty==OCUPADO){
+				printAlbum(list[i]);
+			}
+		}
+	}
+}
+
+void imprimirGenero(gender list[], int len){
+int i;
+	if(list != NULL && len > 0 ){
+			for(i=0; i<len; i++){
+				if(list[i].isEmpty==OCUPADO){
+					printGenero(list[i]);
+				}
+			}
+	}
+}
+
+static void printGenero(gender genero){//paso la dreccion de memoria , apunta a la direccion de memoria del indice donde se encuentra el dato
+	printf("%d\t%s\n",genero.codGenero,genero.descripcion);
+}
+
+void imprimirTipoArtista(typeArtist list[], int len){
+int i;
+	if(list != NULL && len > 0 ){
+			for(i=0; i<len; i++){
+				if(list[i].isEmpty==OCUPADO){
+					printTipoArtista(list[i]);
+				}
+			}
+	}
+}
+
+static void printTipoArtista(typeArtist tipoA){//paso la dreccion de memoria , apunta a la direccion de memoria del indice donde se encuentra el dato
+	printf("%d\t%s\n",tipoA.codTypeArt,tipoA.typeDes);
+}
+
+void imprimirArtistas(artist list[], int len){
+int i;
+	if(list != NULL && len > 0 ){
+			for(i=0; i<len; i++){
+				if(list[i].isEmpty==OCUPADO){
+					printArtista(list[i]);
+				}
+			}
+	}
+}
+
+static void printArtista(artist tipoA){//paso la dreccion de memoria , apunta a la direccion de memoria del indice donde se encuentra el dato
+	printf("%d\t%s\n",tipoA.codArtista,tipoA.nombre);
+}
+
+//-----------------------------------PARTE DOS------------------------------------
+void imprimirTipoAlbum(typeAlbum list[],int len){
+int i;
+	if(list != NULL && len > 0 ){
+		printf("ID\tDESCRIPCION\n");
+			for(i=0; i<len; i++){
+				if(list[i].isEmpty==OCUPADO){
+					printTipoAlbum(list[i]);
+				}
+			}
+	}
+}
+
+static void printTipoAlbum(typeAlbum tipoTA){//paso la dreccion de memoria , apunta a la direccion de memoria del indice donde se encuentra el dato
+	printf("%d\t%s\n",tipoTA.codtypeAlmbum,tipoTA.descripcion);
+}
+
+//----------------------------------------------------------------------MODIFICACION--------------------------------------------------------------
+
+int buscarId(album list[], int len,int id){
+int retorno=-1;
+int i;
+if(list !=NULL && len > 0 && id >= 0)
+{
+	for(i=0; i<len ; i++)
+	{
+		if(list[i].codAlbum == id && list[i].isEmpty == OCUPADO)
+		{
+			retorno = i;
+			break;
+		}
+	}
+}
+return retorno;//retorna el id (si hay un error retorna -1)
+}
+
+static int seleccionarModificar(int *seleccionarMod){
+	int retorno=-1;
+	int auxSelecion;
+
+	selecModificar();
+	if(utn_getInt(&auxSelecion, "\nElegi la opcion:","error", 1, 4, REINTENTOS)==0){
+		retorno=0;
+		*seleccionarMod=auxSelecion;
+	}
+	return retorno;
+}
+
+int modificarArtists(album list[],typeAlbum listTA[] ,int len , int idMod){
+	int retorno=-1;
+	int campoMod;
+	char auxList[len];
+	int auxDia;
+	int auxMes;
+	int auxAnio;
+	float auxFloat;
+	char auxDescripcion[len];
+
+	if(seleccionarModificar(&campoMod)==0){
+		switch(campoMod){
+		case 1:
+			if(utn_getCaracter(auxList, len,"Ingresar el titulo", "Error\n", REINTENTOS)==0){
+				strcpy(list[idMod].titulo,auxList);
+				puts("Se modifico correctamente\n");
+				retorno=0;
+			}
+			break;
+		case 2:
+			if(utn_getInt(&auxDia, "Ingrese dia","Error\n", 1, 31, REINTENTOS)==0){
+				if(utn_getInt(&auxMes,"Ingresar mes","Error\n", 1, 12, REINTENTOS)==0){
+					if(utn_getInt(&auxAnio, "Ingresar año", "Error\n", 1, 9999, REINTENTOS)==0){
+						list[idMod].fechaPubli.dia=auxDia;
+						list[idMod].fechaPubli.mes=auxMes;
+						list[idMod].fechaPubli.anio=auxAnio;
+						puts("Se modifico correctamente\n");
+						retorno=0;
+					}
+				}
+			}
+			break;
+		case 3:
+			if(utn_getNumeroFloat(&auxFloat,"Ingrese importe", "Error\n", 1, 9999, REINTENTOS)==0){
+				list[idMod].importe=auxFloat;
+				puts("Se modifico correctamente\n");
+				retorno=0;
+			}
+			break;
+
+		case 4 :
+			if(utn_getCaracter(auxDescripcion, len,"Ingresar descripcion ", "Error\n", REINTENTOS)==0){
+				strcpy(listTA[idMod].descripcion,auxDescripcion);
+				puts("Se modifico correctamente\n");
+				retorno=0;
+			}
+
+			break;
+		default:
+			printf("Esa opcion no se encuentra(no se modifico el ID)\n");
+			break;
+		}
+	}
+
+
+return retorno;
+}
+
+//------------------------------------------------------------REMOVE--------------------------------------------------
+
+int removeArtist(album list[], int len , int id){
+	int retorno=-1;
+	int i;
+	int confirmar;
+
+		for(i=0; i<len; i++){
+			if(list[i].codAlbum == id  && list[i].isEmpty==OCUPADO){
+
+				if(utn_getInt(&confirmar, "Dar de baja?[1(S)|2(N)]", "Error\n", 1, 2, REINTENTOS)==0){
+					if(confirmar==1){
+						list[i].isEmpty=LIBRE;
+						printf("Los datos han sido borrado...\n");
+						retorno=0;
+					}else{
+						printf("Los datos no han sido borrado...\n");
+					}
+					break;
+				}
+			}
+		}
+	return retorno;
+}
+
+//-------------------------------------------------------------MENU---------------------------------------------------------------------
+
+void menu(album list[],gender genero[],typeArtist typeA[],artist artistas[],typeAlbum tipoAlbum[], int len){
+
+	int opcion;//opcion de menu opciones
+	int lugarLibre;//lugar libre del primer
+	int flagPrimerPos=1;//pasa saber el primer lugar
+	int opcionInforme;//opciones de punto 4(informar)
+	int total;//el total de todos los importes
+	float promedioInforme;//puntero para hacer el promedio
+	int superAlb;//albunes que superan el promedio
+	int cantFechaM;//cantidad de albunes que son menores a la fecha del 1/1/2000. //BUUUUUUUUUUUG me cuanta 10 nose donde va el break
+	int opcionListar;//opcion de listar(punto 5)
+	int opcionLCinco;//opcion listar para el punto 5 del listar
+	int buscarF;
+	int fechaBuscada;
+	int buscarArtistaM;
+	int artistaBuscarM;
+
+	do{
+		menuOpciones();
+		if(utn_getInt(&opcion, "\nIngresar opcion", "Error\n", 1, 6,REINTENTOS)==0){};
+
+		switch(opcion){
+			case 1:
+				lugarLibre=bucarLibre(list,len);
+				if(lugarLibre != -1){
+					addArtist(&list[lugarLibre] , &tipoAlbum[lugarLibre]);
+					flagPrimerPos=1;
+				}else{
+					printf("\nNo hay espacio");
+				}
+				break;
+			case 2:
+
+				if(flagPrimerPos == 1){
+
+					imprimirAlbum(list, len);
+					imprimirTipoAlbum(tipoAlbum, len);
+
+					//-------------------------------
+					int idIngresado;
+					int idModificar;
+
+					if(utn_getInt(&idIngresado, "\nIngrese el ID ", "Error\n", 0, 999, REINTENTOS)==0){
+						idModificar=buscarId(list,len,idIngresado);
+
+						if(idModificar >= 0){
+							modificarArtists(list, tipoAlbum,len,idModificar);
+							printf("ID\tTITULO\t\tDIA\tMES\tAÑO\tIMPORTE\t\n");
+							printAlbum(list[idModificar]);
+							printf("ID\tDESCRIPCION");
+							printTipoAlbum(tipoAlbum[idModificar]);
+
+						}else{
+							printf("El id no existe\n");
+						}
+
+					}
+				}else{
+					printf("No hay empleados cargados.....\n");
+				}
+
+				break;
+
+			case 3:
+				if(flagPrimerPos==1){
+					imprimirAlbum(list, len);
+					//------------------------------------
+					int auxCodigo;
+
+					if(utn_getInt(&auxCodigo,"\nIngrese el ID", "Error\n", 1, 2000, REINTENTOS)==0){
+
+						removeArtist(list, len, auxCodigo);
+					}
+
+				}else{
+					printf("No hay empleados cargados.....\n");
+				}
+
+				break;
+
+			case 4:
+				if(flagPrimerPos==1){
+					opcionesInformes();
+					if(utn_getInt(&opcionInforme,"Opcion", "Error\n", 1, 3, REINTENTOS)==0){
+						switch(opcionInforme){
+						case 1:
+							total=totalInforme(list,len,&promedioInforme);
+							superAlb=superAlbunes(list, len, promedioInforme);
+							printf("*El total de precios es  %d \n",total);
+							printf("*El promedio de precios es %f",promedioInforme);
+							printf("\n*La cantidad de pasajeros que superan al promedio es %d\n",superAlb);
+							break;
+						case 2:
+							cantFechaM=cantAlbunesFecha(list,len);
+							printf("*Cantidad de álbumes menor al 1/1/2000.%d\n ",cantFechaM);
+							break;
+						case 3:
+							//SALIR
+							break;
+						}
+					}
+				}else{
+					printf("no hay empleados cargados");
+				}
+				break;
+			case 5:
+				if(flagPrimerPos==1){
+					listar();
+					if(utn_getInt(&opcionListar,"\nOpcion", "Error\n", 1, 15, REINTENTOS)==0){
+						switch(opcionListar){
+						case 1:
+							imprimirGenero(genero, len);
+							break;
+						case 2:
+							imprimirTipoArtista(typeA,len);
+							break;
+						case 3:
+							imprimirArtistas(artistas,len);
+							break;
+						case 4:
+							imprimirAlbum(list, len);
+							break;
+						case 5:
+							listarCinco();
+							if(utn_getInt(&opcionLCinco,"\nOpcion", "Error\n", 1, 3, REINTENTOS)==0){
+								switch(opcionLCinco){
+								case 1:
+									if(sortAlbunesImporte(list,len)==0){
+										imprimirAlbum(list, len);
+									}
+
+									break;
+								case 2:
+									if(sortAlbunesTitulo(list,len)==0){
+										imprimirAlbum(list, len);
+									}
+									break;
+								case 3:
+									break;
+								}
+							}
+							break;
+						case 6:
+							printAlbunesFecha(list,len);
+							break;
+						case 7:
+							total=totalInforme(list,len,&promedioInforme);
+							printSuperAlbunes(list,len,promedioInforme);
+							break;
+						case 8:
+							todosAA(list,artistas,len );
+							break;
+						case 9:
+
+							if(utn_getInt(&buscarF, "\nIngrese fecha ", "Error", 0, 9999, REINTENTOS)==0){
+								fechaBuscada=buscarFecha(list,len,buscarF);
+
+								if(fechaBuscada >= 0){
+
+									printAlbum(list[fechaBuscada]);
+
+								}else{
+									printf("La fecha no existe\n");
+								}
+							}
+							break;
+						case 10:
+							albunesCaros(list, len);
+							break;
+
+						case 11:
+							imprimirTipoAlbum(tipoAlbum, len);
+							break;
+
+						case 12:
+							albunesNVinilo(list,tipoAlbum,len);
+							break;
+						case 13:
+							opcionArtista();
+							if(utn_getInt(&buscarArtistaM, "\nopcion", "error\n", 1, 3, REINTENTOS)==0){
+								artistaBuscarM = buscarArtista(artistas,len ,buscarArtistaM);
+								if(buscarArtistaM >=2 && buscarArtistaM <=3 ){
+									printAlbum(list[artistaBuscarM]);
+								}else{
+									printf("ese artista no existe no existe\n");
+								}
+							}
+							break;
+					}
+					}
+				}else{
+					printf("no hay empleados cargados");
+				}
+
+
+				break;
+			case 6:
+				break;
+		}
+
+	}while(opcion!=6);
+}
+
+//-----------------------------------------------LISTAR-----------------------------------------------------------------------------------
+//El álbum o los álbumes más caros.
+void albunesCaros(album list[] , int len){
+	int mayorImpote=0;
+	for(int i=0;i<len;i++){
+		if(list[i].importe > mayorImpote && list[i].isEmpty==OCUPADO){
+			mayorImpote=list[i].importe;
+		}
+	}
+	printf("El importe mas grande es:\n");
+	for(int i=0;i<len ;i++){
+		//si el list importe es el de la variable mayorImporte muestro toda la lista
+		if(list[i].importe == mayorImpote){
+			printAlbum(list[i]);
+		}
+	}
+}
+//Todos los álbumes de un año determinado.
+int buscarFecha(album list[], int len,int fecha){
+int retorno=-1;
+int i;
+if(list !=NULL && len > 0 && fecha >= 0)
+{
+	for(i=0; i<len ; i++)
+	{
+		if(list[i].fechaPubli.anio == fecha  && list[i].isEmpty == OCUPADO)
+		{
+			retorno = i;
+			break;
+		}
+	}
+}
+return retorno;//retorna el id (si hay un error retorna -1)
+}
+//Todos los álbumes de cada artista.
+void todosAA(album list[],artist artistas[], int len ){
+
+	for(int i=0;i<3 ;i++){//atistas
+		printf("%d , %s\n",artistas[i].codArtista,artistas[i].nombre);
+		for(int j=0;j<len;j++){//albunes
+			if(list[j].isEmpty==OCUPADO && artistas[i].codArtista == list[j].codAlbum ){
+				printf("   \t --> %d\t%s\t,%d\t,%d\t,%d\t,%f\n",list[j].codAlbum, list[j].titulo,list[j].fechaPubli.dia,list[j].fechaPubli.mes,list[j].fechaPubli.anio,list[j].importe);
+
+			}
+		}
+	}
+}
+//Todos los álbumes que superan el promedio de los importes.
+void printSuperAlbunes(album list[],int len, float promedio){
+	if(list != NULL && len > 0){
+		for(int i=0;i<len;i++){
+			if(list[i].isEmpty==OCUPADO){
+				if(list[i].importe > promedio){
+					printAlbum(list[i]);
+				}
+			}
+		}
+	}
+}
+//Todos los álbumes cuya fecha de publicación es anterior a 1/1/2000.
+void printAlbunesFecha(album fecha[],int len){
+	if(fecha!=NULL && len > 0){
+		for(int i=0;i<len;i++){
+			if(fecha[i].fechaPubli.anio < 2000 && fecha[i].isEmpty==OCUPADO){
+				printAlbum(fecha[i]);
+			}
+		}
+	}
+}
+
+//----------------------------------INFORME DE ORDENAMIENTO----------------------
+int sortAlbunesImporte(album list[], int len)//desendente
+{
+	int retorno=-1;
+	album aux;
+	int i;
+	int j;
+
+		for(i=0;i<len-1; i++){
+
+			for(j=i+1;j<len; j++){
+				if(list[i].importe < list[j].importe){
+						aux=list[i];
+						list[i]=list[j];
+						list[j]=aux;
+						retorno=0;
+					}
+				}
+			}
+
+	return retorno;
+}
+
+
+
+
+int sortAlbunesTitulo(album list[], int len)//ascendente
+{
+	int retorno=-1;
+	album aux;
+	int i;
+	int j;
+		for(i=0;i<len-1; i++){
+
+			for(j=i+1;j<len; j++){
+				if(strncmp(list[i].titulo,list[j].titulo,TAM) > 0 ){
+					aux=list[i];
+					list[i]=list[j];
+					list[j]=aux;
+					retorno=0;
+				}
+			}
+		}
+	return retorno;
+}
+
+//--------------------------------------INFORMES-------------------------------
+int superAlbunes(album list[],int len, float promedio){
+	int retorno=0;
+	int contSuperPas=0;
+	if(list != NULL && len > 0){
+		for(int i=0;i<len;i++){
+			if(list[i].isEmpty==OCUPADO){
+				if(list[i].importe > promedio){
+					contSuperPas++;
+					retorno=contSuperPas;
+				}
+			}
+		}
+	}
+
+	return retorno;
+}
+
+int totalInforme( album list[],int len,float*promedio){
+	int retorno=0;
+	int contTotal=0;
+	int contImporte=0;
+	if(list != NULL && len > 0){
+		for(int i=0;i<len;i++){
+			if(list[i].isEmpty==OCUPADO){
+				contTotal=contTotal+list[i].importe;
+				contImporte++;
+				retorno=contTotal;
+			}
+		}
+
+		*promedio=promedioInforme(contImporte,contTotal);
+	}
+
+	return retorno;
+}
+
+float promedioInforme(int contImporte , int totaInformes ){
+	float retorno=0;
+	if(contImporte > 0 && totaInformes > 0){
+		retorno=(float)totaInformes/contImporte;
+	}
+
+	return retorno;
+}
+
+int cantAlbunesFecha(album fecha[],int len){
+	int contFecha=0;
+	if(fecha!=NULL && len > 0){
+		for(int i=0;i<len;i++){
+			if(fecha[i].fechaPubli.anio < 2000 && fecha[i].isEmpty==OCUPADO){
+				contFecha++;
+			}
+		}
+	}
+	return contFecha;
+}
+
+//--------------------------------ENUNCIADOS-------------------------------
+void opcionesInformes(){
+    printf("\nMenu de informes"
+            "\n1. Total y promedio de los importes, y cuántos álbumes superan ese promedio."
+            "\n2. Cantidad de álbumes cuya fecha de publicación es anterior a 1/1/2000"
+            "\n3. Salir.\n");
+}
+
+void listar(){
+	 printf("\nMenu de listar"
+	            "\n1.Todos los generos"
+	            "\n2.Todos los tipos de artistas musicales"
+	            "\n3.Todos los artistas"
+	            "\n4.Todos los albumes"
+			 	"\n5.Ordenar albumes por Importe o Titulo"
+			 	"\n6.Todos los álbumes cuya fecha de publicación es anterior a 1/1/2000."
+			 	"\n7.Todos los álbumes que superan el promedio de los importes."
+			 	"\n8.Todos los álbumes de cada artista."
+			 	"\n9.Todos los álbumes de un año determinado."
+			 	"\n10.El álbum o los álbumes más caros."
+			 	"\n-----------------------------------------------------"
+			 	 "\n11.Listar todos los tipos de albunes"
+			 	 "\n12.Listar todos los albunes que no sean de vinilo"
+			 	 "\n13.Listar todos los albunes segun un artista determinado"
+			 	"\n14.Salir.");
+}
+
+void listarCinco(){
+	printf("\n1.Importe"
+		   "\n2.Titulo"
+		   "\n3.Salir");
+}
+
+void selecModificar(){
+	printf("\n1-Titulo");
+	printf("\n2-Fecha");
+	printf("\n3-Importe");
+	printf("\n---PARTE DOS---");
+	printf("\n4.Descripcion de tipo de album");
+}
+
+void menuOpciones(){
+	printf("Bienvenido");
+    printf("\n1) Alta.");
+    printf("\n2) Modificacion.");
+    printf("\n3) Baja.");
+    printf("\n4) Informar.");
+    printf("\n5) Listar.");
+    printf("\n6) Salir.");
+}
+
+void opcionArtista(){
+	printf("\n1.The Beatles");
+	printf("\n2.Michael Jackson");
+	printf("\n3.Bob Marley");
+
+}
+//----------------------------------------------------------------------------HARCODEO----------------------------------------------
+
+void harcodeo(gender listG[],artist listA[],typeArtist listTA[],album listAlbum[],typeAlbum listTypeAlbum [],int tam){
+
+	harcodeoGenero(listG, tam);
+	harcodeoArtista(listA, tam);
+	harcodeoTipoArtista(listTA, tam);
+	harcodeoAlbumes(listAlbum, tam);
+	harcodeoTypeAlbum(listTypeAlbum,tam);
+}
+
+void harcodeoGenero(gender list[],int tam){
+	gender carga[3]={
+			{1,"Rock.Género originado principios de la década de 1950 en Estados Unidos",OCUPADO},
+			{2,"Pop. Música ligera y popular derivado de estilos musicales negros",OCUPADO},
+			{3,"Regue.Genero que se originó en Jamaica durante la década de 1960.",OCUPADO},
+					}; //harcodeo (cargo manual)
+
+	for(int i=0; i<3; i++){
+		list[i]=carga[i];
+	}
+
+}
+
+void harcodeoArtista(artist list[],int tam){
+	artist carga[3]={
+			{1,"The Beatles",OCUPADO},
+			{2,"Michael Jackson",OCUPADO},
+			{3,"Bob Marley",OCUPADO},
+					}; //harcodeo (cargo manual)
+
+	for(int i=0; i<3; i++){
+		list[i]=carga[i];
+	}
+
+}
+
+void harcodeoTipoArtista(typeArtist list[],int tam){
+	typeArtist carga[2]={
+			{1,"SOLISTA",OCUPADO},
+			{2,"BANDA",OCUPADO},
+					}; //harcodeo (cargo manual)
+
+	for(int i=0; i<2; i++){
+		list[i]=carga[i];
+	}
+
+}
+
+void harcodeoAlbumes(album list[],int tam){
+	album carga[3]={
+			{1,"h",{12,3,1900},700,OCUPADO},
+			{2,"a",{1,12,1800},400,OCUPADO},
+			{3,"z",{31,6,2001},1000,OCUPADO},
+					}; //harcodeo (cargo manual)
+
+	for(int i=0; i<3; i++){
+		list[i]=carga[i];
+	}
+
+}
+
+void harcodeoTypeAlbum(typeAlbum list[],int tam){
+	typeAlbum carga[3]={
+				{1,"VINILO",OCUPADO},
+				{2,"CINTA",OCUPADO},
+				{3,"CD",OCUPADO},
+						}; //harcodeo (cargo manual)
+
+		for(int i=0; i<3; i++){
+			list[i]=carga[i];
+		}
+
+}
+
+//--------------------------------PARTE DOS ---------------------------
+
+
+void albunesNVinilo(album list[],typeAlbum listTA[],int tam ){
+	for(int i=0;i<3 ;i++){//tipoalbum
+		for(int j=0;j<tam;j++){//los albunes
+			if(list[j].isEmpty == OCUPADO && list[j].codAlbum == listTA[i].codtypeAlmbum && list[j].codAlbum != 1 && listTA[i].codtypeAlmbum != 1){
+				printf("   \t --> %d\t%s\t,%d\t,%d\t,%d\t,%f\n",list[j].codAlbum, list[j].titulo,list[j].fechaPubli.dia,list[j].fechaPubli.mes,list[j].fechaPubli.anio,list[j].importe);
+			}
+		}
+	}
+}
+
+int buscarArtista(artist list[],int len ,int artista){
+	int retorno=-1;
+	int i;
+	if(list !=NULL && len > 0 && artista >= 0){
+		for(i=0 ; i<len ; i++){
+			if(list[i].codArtista == artista && list[i].isEmpty==OCUPADO){
+				retorno=i;
+			}
+		}
+	}
+	return retorno;
+}
+
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;17-04-2022-Estructuras/src/17-04-2022.c&apos; to &apos;17-04-2022-Estructuras.c&apos;" description="Rename resource &apos;17-04-2022.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/17-04-2022.c" name="17-04-2022-Estructuras.c" stamp="1650228488905" updateReferences="true"/>
+</session>

@@ -1,0 +1,7 @@
+13:30:24 **** Rebuild of configuration Debug for project Vectores-04-04-2022 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\vectores-04-04-2022.o" "..\\src\\vectores-04-04-2022.c" 
+gcc -o Vectores-04-04-2022.exe "src\\vectores-04-04-2022.o" 
+
+13:30:25 Build Finished. 0 errors, 0 warnings. (took 575ms)
+

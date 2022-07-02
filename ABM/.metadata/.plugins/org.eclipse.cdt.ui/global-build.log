@@ -1,0 +1,16 @@
+15:26:37 **** Rebuild of configuration Debug for project ABM ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ABM.o" "..\\src\\ABM.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn.o" "..\\src\\utn.c" 
+gcc -o ABM.exe "src\\ABM.o" "src\\utn.o" 
+Info: Nothing to build for ABM
+15:29:15 **** Incremental Build of configuration Debug for project ABM ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn.o" "..\\src\\utn.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ABM.o" "..\\src\\ABM.c" 
+gcc -o ABM.exe "src\\ABM.o" "src\\utn.o" 
+Info: Nothing to build for ABM
+15:29:56 **** Incremental Build of configuration Debug for project ABM ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ABM.o" "..\\src\\ABM.c" 
+gcc -o ABM.exe "src\\ABM.o" "src\\utn.o" 

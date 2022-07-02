@@ -1,0 +1,55 @@
+/*
+ * libraryArtistMusic.c
+ *
+ *  Created on: 30 abr. 2022
+ *      Author: maxim
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#include "libraryArtistMusic.h"
+#include "utn.h"
+
+static int dameUnIdNuevo(void);
+
+
+
+int  initArtist(gender listGerero[],int tam){
+
+	int i;
+	int retorno= -1;
+	if(listGerero != NULL && tam > 0){
+
+		for(i=0;i<tam;i++){
+			listGerero[i].isEmpty= LIBRE;
+
+		}
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+int addArtist(gender listGender[], artist listArtist,typeArtist listTypeArtist[], album listAlbum[],fechAlbum listFecha[]){
+	int retorno=-1;
+	int auxDesGenero;
+	if(listGender != NULL && listArtist != NULL && listTypeArtist != NULL && listAlbum != NULL && listFecha != NULL){
+		if(utn_getCaracter(auxDesGenero,TAM,"ingrese descipcion del genero", "error\n", REINTENTOS)){
+			listGender->codGenero=dameUnIdNuevo();
+		}
+	}
+
+	return retorno;
+}
+
+
+
+static int dameUnIdNuevo(void) //privada del archivo
+{
+	static int contador=0;
+	contador++;//es global : mantiene su valor
+	return contador;
+}

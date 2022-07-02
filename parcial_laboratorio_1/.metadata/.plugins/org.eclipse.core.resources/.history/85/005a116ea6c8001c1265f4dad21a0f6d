@@ -1,0 +1,34 @@
+/*
+ ============================================================================
+ Name        : PARCIAL[1].c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#include "libraryArtistMusic.h"
+#include "utn.h"
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+//--------------------
+gender genero[CANT];
+artist artistas[CANT];
+album album[CANT];
+typeArtist tipoArtista[CANT];
+fechAlbum fechaAlbum[CANT];
+
+initArtist(genero,CANT)
+
+
+
+	return EXIT_SUCCESS;
+}

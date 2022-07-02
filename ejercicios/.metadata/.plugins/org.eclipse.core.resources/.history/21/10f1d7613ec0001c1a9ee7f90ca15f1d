@@ -1,0 +1,68 @@
+/*
+ ============================================================================
+ Name        : Estructuras.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define CANT 3
+
+
+//ESTRUCTURAS
+	typedef struct
+	{
+			int codigo;
+			char nombre[20];
+			char apellido[20];
+			int horaSalida;
+			int horaLlegada;
+			int estado;
+
+	}eTicket;
+
+
+void mostrarTicket(eTicket unTicket);
+eTicket pedirDatosTicket();//porque devuelve la estructura //devuelve el ticket por valor
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+
+	//eTicket unVuelo = {1000,"Juan","Gomez",17};//se pueden las 2 porque estan en una espacio de memoria (jarcodear)
+	//unVuelo=pedirDatosTicket();
+	//mostrarTicket(unVuelo);
+
+	eTicket tickets[CANT];
+	return EXIT_SUCCESS;
+
+}
+
+void mostrarTicket(eTicket unTicket){
+	printf("%d | %s |%s |%d | %d |\n" , unTicket.codigo , unTicket.nombre , unTicket.apellido ,unTicket.horaLlegada ,unTicket.horaSalida);
+}
+
+eTicket pedirDatosTicket(){
+	eTicket miTicket;
+	printf("ingrese codigo de vuelo: ");
+	scanf("%d" ,&miTicket.codigo);
+	fflush(stdin);
+	printf("ingrese el nombre: ");
+	scanf("%[^\n]" ,miTicket.nombre);//le saco el & porque es una cadena
+	fflush(stdin);
+	printf("ingrese el apellido: ");
+	scanf("%[^\n]" ,miTicket.apellido);
+	fflush(stdin);
+	printf("ingrese horario de llegada: ");
+	scanf("%d" ,&miTicket.horaLlegada);
+	fflush(stdin);
+	printf("ingrese horario de salida: ");
+	scanf("%d" ,&miTicket.horaSalida);
+	fflush(stdin);
+	return miTicket;
+}
+

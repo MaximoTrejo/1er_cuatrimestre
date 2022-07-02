@@ -1,0 +1,119 @@
+/*
+ ============================================================================
+ Name        : Estructuras.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define CANT 3
+
+
+//ESTRUCTURAS
+	typedef struct
+	{
+			int codigo;
+			char nombre[20];
+			char apellido[20];
+			int horaSalida;
+			int horaLlegada;
+			int estado;
+
+	}eTicket;
+
+
+void mostrarTicket(eTicket unTicket);
+eTicket pedirDatosTicket();//porque devuelve la estructura //devuelve el ticket por valor
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int opcion;
+
+	//eTicket unVuelo = {1000,"Juan","Gomez",17};//se pueden las 2 porque estan en una espacio de memoria (jarcodear)
+	//unVuelo=pedirDatosTicket();
+	//mostrarTicket(unVuelo);
+
+	eTicket tickets[CANT];
+
+	//inicializamos los estados en cero
+	for(int i=0;i<CANT ;i++){
+		tickets[i].estado=0;
+	}
+
+	do{
+
+			printf("1.Alta");
+			printf("\n2.");
+			printf("\n3.");
+			printf("\n4.");
+			printf("\n5.");
+			printf("\nIngrese una opcion");
+			scanf("%d" ,&opcion);
+
+			switch(opcion)
+			{
+				case 'A':
+					for(i=0; i<CANT; i++){
+						if( tickets[i].estado == 0 ) {
+							tickets[i] = PedirDatosTicket();l
+							flag_A = 1;
+						}
+					}
+					break;
+				break;
+				case 2 :
+
+				break;
+				case 3 :
+
+				break;
+				case 4 :
+
+				break;
+				case 5 :
+
+
+				break;
+			}
+
+		}while(opcion!=5);
+
+	return EXIT_SUCCESS;
+
+}
+
+void mostrarTicket(eTicket unTicket){
+	printf("%d | %s |%s |%d | %d |\n" , unTicket.codigo , unTicket.nombre , unTicket.apellido ,unTicket.horaLlegada ,unTicket.horaSalida);
+}
+
+eTicket pedirDatosTicket(){
+	eTicket miTicket;
+	printf("ingrese codigo de vuelo: ");
+	fflush(stdin);
+	scanf("%d" ,&miTicket.codigo);
+
+	printf("ingrese el nombre: ");
+	fflush(stdin);
+	scanf("%[^\n]" ,miTicket.nombre);//le saco el & porque es una cadena
+
+	printf("ingrese el apellido: ");
+	fflush(stdin);
+	scanf("%[^\n]" ,miTicket.apellido);
+
+	printf("ingrese horario de llegada: ");
+	fflush(stdin);
+	scanf("%d" ,&miTicket.horaLlegada);
+
+	printf("ingrese horario de salida: ");
+	fflush(stdin);
+	scanf("%d" ,&miTicket.horaSalida);
+
+	miTicket.estado=1;
+	return miTicket;
+}
+

@@ -1,0 +1,41 @@
+/*
+ ============================================================================
+ Name        : 15-04-2002.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define EDADDES 5
+// EJERCICIO: Pedirle al usuario 5 edades y LUEGO
+// imprimir las 5 edades. Definir un array de 5 posiciones.
+// y usar la funcion utn getNumero() para pedir los valores
+int main(void) {
+	setbuf(stdout,NULL);
+	int edad ;
+	int edades[5];
+	int i;
+
+for(i=0;i<EDADDES;i++){
+
+	if(utn_getNumero(&edad, "Ingrese edad:", "Esta edad no va\n",1,120,3)==0){
+		//printf("Ingresaste edad: d\n", edad);
+		//en edaddes escribp edad en la posicion "i"
+		edades[i]=edad;
+
+	}
+	else{
+	   printf("Sonaste no tenes idea lo que es una eda'\n");
+	}
+
+
+}
+
+
+
+	return EXIT_SUCCESS;
+}

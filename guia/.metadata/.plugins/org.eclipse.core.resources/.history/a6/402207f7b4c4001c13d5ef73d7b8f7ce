@@ -1,0 +1,42 @@
+/*
+ ============================================================================
+ Name        : 6-1.c
+ Author      : MaximoTrejo
+
+	Ejercicio 6-1:
+	Disponemos de dos variables numéricas (a y b). Realizar un algoritmo que permita el intercambio de valores de dichas variables.
+
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define LEN 5
+#define MAX 100
+#define MIN 0
+
+//int pedirNum(int vector[],int size);
+void repetidos(int vectorUno[],int vectorDos[],int size);
+
+int main(void){
+	setbuf (stdout, NULL);
+	int varUno[LEN]={1,3,5,7,9};
+	int varDos[LEN]={2,4,6,8,10};
+	int size=5;
+
+	repetidos(varUno,varDos,size);
+
+
+	return EXIT_SUCCESS;
+}
+
+void repetidos(int vectorUno[],int vectorDos[],int size){
+		for(int i=0;i<size;i++){
+			printf(" %d  " ,vectorUno[i]);
+
+			for(int j=0;j<size;j++){
+				printf(" %d " ,vectorDos[j]);
+
+			}
+		}
+	}

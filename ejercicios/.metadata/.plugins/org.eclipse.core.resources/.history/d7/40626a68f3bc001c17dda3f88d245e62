@@ -1,0 +1,62 @@
+/*
+ ============================================================================
+ Name        : 15-04-2002.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "funciones.h"
+#define EDADDES 5
+
+// EJERCICIO: Pedirle al usuario 5 edades y LUEGO
+// imprimir las 5 edades. Definir un array de 5 posiciones.
+// y usar la funcion utn getNumero() para pedir los valores
+
+int main(void) {
+	setbuf(stdout,NULL);
+
+	int edad ;
+	int arrayEdades[EDADDES];
+	int i;
+
+//CARGAR (recorro para cargar de forma secuencial(uno detras del otro))
+for(i=0;i<EDADDES;i++){
+
+	if(utn_getNumero(&edad,"Ingrese edad:", "Esta edad no va\n",1,120,3)==0){
+	//if(utn_getNumero(&arrayEdades[i],"Ingrese edad:", "Esta edad no va\n",1,120,3)==0){(sacando la variable edad)
+		//printf("Ingresaste edad: d\n", edad);
+		//en edaddes escribp edad en la posicion "i"
+		arrayEdades[i]=edad;
+	}
+	else{
+	   printf("Sonaste no tenes idea lo que es una eda'\n");
+	}
+
+}
+
+imprimirArray(&edad);
+/*
+//MOSTRAR (recorro para imprimir)
+for(i=0;i<EDADDES;i++){
+	printf("%d  ", arrayEdades[i]);
+}
+*/
+	return EXIT_SUCCESS;
+}
+
+
+
+
+
+void imprimirArray(int *edad){
+	//MOSTRAR (recorro para imprimir)
+	for(int i=0;i<EDADDES;i++){
+		printf("%d  ", edad[i]);
+	}
+
+}

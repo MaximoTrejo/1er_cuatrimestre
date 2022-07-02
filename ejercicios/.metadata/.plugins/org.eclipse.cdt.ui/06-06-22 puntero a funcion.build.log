@@ -1,0 +1,7 @@
+21:41:35 **** Incremental Build of configuration Debug for project 06-06-22 puntero a funcion ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\06-06-22 puntero a funcion.o" "..\\src\\06-06-22 puntero a funcion.c" 
+gcc -o "06-06-22 puntero a funcion.exe" "src\\06-06-22 puntero a funcion.o" 
+
+21:41:35 Build Finished. 0 errors, 0 warnings. (took 490ms)
+

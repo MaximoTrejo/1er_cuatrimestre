@@ -1,0 +1,287 @@
+/*
+ * computer.c
+ *
+ *  Created on: 28 jun. 2022
+ *      Author: maxim
+ */
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "LinkedList.h"
+#include "Controller.h"
+#include "computer.h"
+#include "utn.h"
+#include "menu.h"
+#include "parser.h"
+
+
+void Passenger_delete(eComputer*this){
+	free(this);
+}
+
+eComputer* Passenger_new(){
+	eComputer *pasajero;
+	/*
+	 * La función malloc() devuelve un puntero al tipo de datos void (sin tipo). Dicho puntero
+	 * puede ser asignado a una variable puntero de cualquier tipo mediante una conversión forzada
+	 * de tipo de datos (casting).
+	 */
+
+	//crea un solo pasajero en MEMORIA
+	pasajero=(eComputer*)malloc(sizeof(eComputer));
+
+	return pasajero;
+}
+
+
+eComputer* Passenger_newParametros(char* idStr,char* descripcionStr,char* precioStr,char* idTipoStr ){
+
+	eComputer *pasajeros= Passenger_new();
+	//valido que no haya basura
+	if(pasajeros != NULL){
+		//llamo funcion para que me guarde el dato en la estructura
+		Passenger_setId(pasajeros, atoi(idStr));//cambio id(char) a ententero
+		Passenger_setNombre(pasajeros, descripcionStr);
+		Passenger_setPrecio(pasajeros, atof(precioStr));
+		Passenger_setCodigoVuelo(pasajeros,atoi(idTipoStr));
+	}
+	return pasajeros;
+}
+
+int Passenger_setId(eComputer* this,int id){
+	int retorno=-1;
+	//valido que no haya basura
+	if(this != NULL){
+		//guarda el valor id en la variable id de la estructura
+		this->id=id;
+		retorno=0;
+	}
+	return retorno;
+}
+
+int Passenger_setNombre(eComputer* this,char* descripcion){
+	int retorno=-1;
+	if(this!=NULL && descripcion != NULL){
+		//estoy copiando en la estructura el dato del puntero que viene de parametro
+		strcpy(this->descripcion,descripcion);
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+
+int Passenger_setPrecio(eComputer* this,float precio){
+	int retorno=-1;
+	//valido que no haya basura
+	if(this != NULL){
+		//guarda el valor id en la variable id de la estructura
+		this->precio=precio;
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+
+int Passenger_setCodigoVuelo(eComputer* this, int idTipo){
+	int retorno=-1;
+		if(this!=NULL ){
+			//estoy copiando en la estructura el dato del puntero que viene de parametro
+			this->idTipo=idTipo;
+			retorno=0;
+		}
+		return retorno;
+}
+
+
+
+//--------------------------------------------------------------------------
+/*
+ * //funcion que compara //
+ * tiene como parametros 2 punteros genericos que para que se transformen
+ * hay que castiarlos a pasajeros y de ahi poder llamar a los datos
+ */
+int Passenger_compareById(void* p1 ,void*p2){
+	eComputer* unPasajero;
+	eComputer*otroPasajero;
+	int compara;
+	compara=0;//cuando son iguales
+
+	unPasajero=(eComputer*)p1;
+	otroPasajero=(eComputer*)p2;
+
+	if(unPasajero->id > otroPasajero->id){
+		compara = 1;//cuando p1 es mayor a p2
+	}else{
+		if(unPasajero->id < otroPasajero->id){
+			compara=-1;//cuando p1 es menor a p2
+		}
+	}
+	return compara;
+}
+
+
+int Passenger_compareByName(void* p1 ,void*p2){
+	eComputer* unPasajero;
+	eComputer*otroPasajero;
+
+	unPasajero=(eComputer*)p1;
+	otroPasajero=(eComputer*)p2;
+
+	return strcmp(unPasajero->descripcion,otroPasajero->descripcion);
+}
+
+int Passenger_compareByPrecio(void* p1 ,void*p2){
+	eComputer* unPasajero;
+	eComputer*otroPasajero;
+	int compara;
+	compara=0;//cuando son iguales
+
+	unPasajero=(eComputer*)p1;
+	otroPasajero=(eComputer*)p2;
+
+	if(unPasajero->precio > otroPasajero->precio){
+		compara = 1;//cuando p1 es mayor a p2
+	}else{
+		if(unPasajero->precio < otroPasajero->precio){
+			compara=-1;//cuando p1 es menor a p2
+		}
+	}
+	return compara;
+}
+
+int Passenger_compareByIdType(void* p1 ,void*p2){
+	eComputer* unPasajero;
+	eComputer*otroPasajero;
+	int compara;
+	compara=0;//cuando son iguales
+
+	unPasajero=(eComputer*)p1;
+	otroPasajero=(eComputer*)p2;
+
+	if(unPasajero->idTipo > otroPasajero->idTipo){
+		compara = 1;//cuando p1 es mayor a p2
+	}else{
+		if(unPasajero->idTipo < otroPasajero->idTipo){
+			compara=-1;//cuando p1 es menor a p2
+		}
+	}
+	return compara;
+}
+
+//-------------------------------------------------------------------
+
+int Passenger_getId(eComputer* this,int *id){
+	int retorno=-1;
+	//valido que no haya basura
+	if(this != NULL && id != NULL){
+		//guarda el valor que ya esta en la estructura en el puntero , el cual caudno termine la funcion puede ser usado
+		*id=this->id;
+		retorno=0;
+	}
+	return retorno;
+}
+
+int Passenger_getNombre(eComputer* this,char* nombre){
+	int retorno=-1;
+	if(this!=NULL && nombre != NULL){
+		//en este caso estoy copiendo en el puntero el dato de la estructura
+		strcpy(nombre,this->descripcion);
+		retorno=0;
+	}
+	return retorno;
+}
+
+int Passenger_getPrecio(eComputer* this,float* precio){
+	int retorno=-1;
+	//valido que no haya basura
+	if(this != NULL && precio != NULL){
+		//guarda el valor que ya esta en la estructura en el puntero , el cual caudno termine la funcion puede ser usado
+		*precio=this->precio;
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+int Passenger_getIdTipo(eComputer* this,int *idTipo){
+	int retorno=-1;
+	int aux;
+	//valido que no haya basura
+	if(this != NULL && idTipo != NULL){
+		//guarda el valor que ya esta en la estructura en el puntero , el cual caudno termine la funcion puede ser usado
+		*idTipo=this->idTipo;
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+
+int controllerPrintInd(eComputer * auxComputer,int indice){
+	int retorno=-1;
+	int idAux;
+	char nombreAux[TAM];
+	float precioAux;
+	int idTipo;
+	char tipo[TAM];
+	/*
+	 * 1-traigo los datos de todos los pasajeros
+	 * 2-verifico todo
+	 * 3-lo muestro
+	 * 4-retorno
+	 */
+	Passenger_getId(auxComputer, &idAux);
+	Passenger_getNombre(auxComputer, nombreAux);
+	Passenger_getPrecio(auxComputer, &precioAux);
+	Passenger_getIdTipo(auxComputer, &idTipo);
+
+	if(idTipo==1){
+		strcpy(tipo,"DESKTOP");
+	}else{
+		strcpy(tipo,"LAPTOP");
+	}
+
+	if(auxComputer != NULL && indice >= 0 ){
+
+		printf("%d,%s,%f,%s\n",idAux,nombreAux,precioAux,tipo);
+		retorno=0;
+	}
+
+	return retorno;
+
+}
+//funcion puntero tiene como parametro un puntero a eComputer
+void aumentoTipo(void* this)
+{
+	//creo el id tipo y el precio (donde voy a guardar el precio cuendo lo pida o busque )
+	int idTipo,auxPrecio;
+	//traigo el tipo y el precio
+	// tiene como parametros 1 puntero genericos que para que se transformen * hay que castiarlos a la lista
+	if( Passenger_getIdTipo((eComputer*)this, &idTipo)==0 && Passenger_getPrecio((eComputer*)this, &auxPrecio)==0)
+	{
+		switch(idTipo)
+		{
+		case 1:
+			//si el id tipo es 1 le aumenta 10
+			if(idTipo==1)
+			{
+				auxPrecio=auxPrecio+(10*auxPrecio/100);
+				Passenger_setPrecio(this, auxPrecio);
+			}
+			break;
+		case 2:
+			//si el id tipo es 2 le aumenta 20
+			if(idTipo==2)
+			{
+				auxPrecio=auxPrecio+(20*auxPrecio/100);
+				Passenger_setPrecio(this, auxPrecio);
+			}
+			break;
+		}
+	}
+}

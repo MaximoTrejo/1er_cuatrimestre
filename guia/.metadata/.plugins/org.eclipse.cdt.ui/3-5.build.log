@@ -1,0 +1,6 @@
+19:26:41 **** Incremental Build of configuration Debug for project 3-5 ****
+Info: Internal Builder is used for build
+gcc -o 3-5.exe "src\\3-5.o" 
+
+19:26:42 Build Finished. 0 errors, 0 warnings. (took 281ms)
+

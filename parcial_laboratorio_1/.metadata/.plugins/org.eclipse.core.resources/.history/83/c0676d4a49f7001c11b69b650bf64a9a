@@ -1,0 +1,206 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "LinkedList.h"
+#include "Controller.h"
+#include "computer.h"
+#include "utn.h"
+#include "menu.h"
+#include "parser.h"
+
+/** \brief Carga los datos de los pasajeros desde el archivo data.csv (modo texto).
+ *
+ * \param path char*
+ * \param pArrayListPassenger LinkedList*
+ * \return int
+ *
+ */
+int controller_loadFromText(char* path , LinkedList* pArrayListPassenger)
+{
+	int retorno=-1;
+	/*
+	 * 1-abro el archivo en modo lectura
+	 * 2-llamo al parser y me fijo si lo llamo bien
+	 * 3-retorno
+	 */
+
+	FILE * pDatos = fopen(path,"r");
+
+	if(pDatos != NULL){
+
+		if(parser_PassengerFromText(pDatos, pArrayListPassenger)==0){
+			fclose(pDatos);
+			printf("se leyo correctamente\n");
+			retorno=0;
+		}else{
+			printf("no se leyo correctamente\n");
+			retorno=-1;
+		}
+	}else{
+		printf("el archivo no existe\n");
+	}
+
+    return retorno;
+}
+
+
+
+/** \brief Ordenar pasajeros
+ *
+ * \param path char*
+ * \param pArrayListPassenger LinkedList*
+ * \return int
+ *
+ */
+int controller_sortPassenger(LinkedList* pArrayListPassenger)
+{
+	int retorno=-1;
+	int opcion;
+	int largo;
+	int opcionSort;
+/*
+ * 1-validar
+ * 2-ver si hay algo cargado
+ * 2-preguntar que quiere ordenar
+ * 3-usar las funcion ll_sort (parametros: linkedlist, funcion ordenar pasajeros, orden (1 o 0))
+ */
+	if(pArrayListPassenger != NULL){
+
+		largo=ll_len(pArrayListPassenger);
+
+		printf("%d",largo);
+
+		if(largo !=0){
+
+			opcionesOrdenar();
+			if(utn_getInt(&opcion,"Opcion:\n", "Error\n", 1, 6, REINTENTOS)==0){
+				switch(opcion){
+					case 1:
+						opcionsort();
+						if(utn_getInt(&opcionSort, "opcion:\n", "Error\n",  1, 2, REINTENTOS)==0){
+							if(opcion==1){
+								if(ll_sort(pArrayListPassenger,Passenger_compareById, 1)==0){
+										printf("Se ordeno correctamente\n");
+										retorno=0;
+								}
+							}else{
+								if(ll_sort(pArrayListPassenger,Passenger_compareById, 0)==0){
+									printf("Se ordeno correctamente\n");
+									retorno=0;
+								}
+							}
+						}
+
+						break;
+					case 2:
+						opcionsort();
+						if(utn_getInt(&opcionSort, "opcion:\n", "Error\n",  1, 2, REINTENTOS)==0){
+							if(opcion==1){
+								if(ll_sort(pArrayListPassenger,Passenger_compareByName, 1)==0){
+									printf("Se ordeno correctamente\n");
+									retorno=0;
+								}
+							}else{
+								if(ll_sort(pArrayListPassenger,Passenger_compareByName, 0)==0){
+									printf("Se ordeno correctamente\n");
+									retorno=0;
+								}
+							}
+
+						}
+
+
+						break;
+					case 3:
+						opcionsort();
+						if(utn_getInt(&opcionSort, "opcion:\n", "Error\n",  1, 2, REINTENTOS)==0){
+							if(opcion==1){
+								if(ll_sort(pArrayListPassenger,Passenger_compareByPrecio, 1)==0){
+									printf("Se ordeno correctamente\n");
+									retorno=0;
+								}
+							}else{
+								if(ll_sort(pArrayListPassenger,Passenger_compareByPrecio, 0)==0){
+									printf("Se ordeno correctamente\n");
+									retorno=0;
+								}
+							}
+
+						}
+					break;
+					case 4:
+						opcionsort();
+						if(utn_getInt(&opcionSort, "opcion:\n", "Error\n",  1, 2, REINTENTOS)==0){
+							if(opcion==1){
+								if(ll_sort(pArrayListPassenger,Passenger_compareByIdType, 1)==0){
+									printf("Se ordeno correctamente\n");
+									retorno=0;
+								}
+							}else{
+								if(ll_sort(pArrayListPassenger,Passenger_compareByIdType, 0)==0){
+									printf("Se ordeno correctamente\n");
+									retorno=0;
+								}
+							}
+						}
+
+					break;
+
+				}
+			}
+		}
+	}
+    return retorno;
+}
+
+
+
+/** \brief Listar pasajeros
+ *
+ * \param path char*
+ * \param pArrayListPassenger LinkedList*
+ * \return int
+ *
+ */
+int controller_ListPassenger(LinkedList* pArrayListPassenger)
+{
+	int retorno=-1;
+	int largo;
+	int i;
+	eComputer * computer;
+
+	/*
+	 * 1-valido
+	 * 2-saco el largo
+	 * 3-leo todos los datos
+	 * 4-guardo los datos del linkedlist en un puntero a pasajeros
+	 * 5-imprimo cada uno
+	 * 6-valido
+	 */
+
+	if(pArrayListPassenger!=NULL){
+
+		largo = ll_len(pArrayListPassenger);
+
+		for(i=0;i<largo;i++){
+
+			computer = ll_get(pArrayListPassenger, i);
+
+			controllerPrintInd(computer,i);
+
+			retorno=0;
+		}
+
+	}
+
+    return retorno;
+}
+
+int controller_aumentoTipo(LinkedList *pArrayListPassenger){
+	int retorno = -1;
+	void (*pFunc)(void *element);
+	if (pArrayListLibro != NULL) {
+		pFunc = aumentoTipo;
+		ll_map(pArrayListLibro, pFunc);
+	}
+	return retorno;
+}

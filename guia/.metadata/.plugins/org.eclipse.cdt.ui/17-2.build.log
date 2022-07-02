@@ -1,0 +1,7 @@
+17:18:41 **** Incremental Build of configuration Debug for project 17-2 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\17-2.o" "..\\src\\17-2.c" 
+gcc -o 17-2.exe "src\\17-2.o" 
+
+17:18:43 Build Finished. 0 errors, 0 warnings. (took 2s.207ms)
+

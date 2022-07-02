@@ -1,0 +1,34 @@
+/*
+ * computer.h
+ *
+ *  Created on: 28 jun. 2022
+ *      Author: maxim
+ */
+
+#ifndef COMPUTER_H_
+#define COMPUTER_H_
+
+#define REINTENTOS 5
+#define TAM 500
+
+typedef struct
+{
+	int id;
+	char descripcion[50];
+	float precio;
+	char apellido[50];
+	int idTipo;
+
+}eComputer;
+
+
+
+eComputer* Passenger_new();
+void Passenger_delete(eComputer*this);
+eComputer* Passenger_newParametros(char* idStr,char* descripcionStr,char* precioStr,char* idTipoStr );
+int Passenger_setId(eComputer* this,int id);
+int Passenger_setNombre(eComputer* this,char* descripcion);
+int Passenger_setPrecio(eComputer* this,float precio);
+int Passenger_setCodigoVuelo(eComputer* this,char* idTipo);
+
+#endif /* COMPUTER_H_ */

@@ -1,0 +1,204 @@
+/*
+ ============================================================================
+ Name        : Estructuras.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#define CANT 3
+
+
+//ESTRUCTURAS
+	typedef struct
+	{
+			int codigo;//campos o atributos
+			char nombre[20];
+			char apellido[20];
+			int horaSalida;
+			int horaLlegada;
+			int estado;
+
+	}eTicket;
+
+
+void mostrarTicket(eTicket unTicket);
+eTicket pedirDatosTicket();//porque devuelve la estructura //devuelve el ticket por valor
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+//--------------------------------
+	int vec[CANT], i;
+	int menor, mayor, num;
+	int opcion;
+	int flag=0 , flag_A=0;
+	int cantidadDatos = 0;
+	int opcionModificar;
+	//int cantidadCodigo=0;
+
+	//eTicket unVuelo = {1000,"Juan","Gomez",17};//se pueden las 2 porque estan en una espacio de memoria (jarcodear)
+	//unVuelo=pedirDatosTicket();
+	//mostrarTicket(unVuelo);
+
+	eTicket tickets[CANT];
+	int auxCodigo;
+
+	//inicializamos los estados en cero
+	for(int i=0;i<CANT ;i++){
+		tickets[i].estado=0;
+	}
+
+	do{
+
+			printf("1.Alta");
+			printf("\n2.baja");
+			printf("\n3.modificacion");
+			printf("\n4 listar");
+			printf("\n5.buscar dato");
+			printf("\n6.salir");
+			printf("\nOpcion");
+			scanf("%d" ,&opcion);
+
+			switch(opcion)
+			{
+				case 1:
+					//carga secuencial con estdo
+					for(i=0; i<CANT; i++){
+						if( tickets[i].estado == 0 ) {
+							//cantidadCodigo++;
+							tickets[i] = PedirDatosTicket(/*cantidadCodigo*/);
+							cantidadDatos++;
+							//tickets[i].codigo=cantidadCodigo;
+							break;
+						}
+					}
+					break;
+				//BAJA
+				case 2:
+					if(cantidadDatos > 0){
+
+						printf("Codigo a borrar:  ");
+						scanf("%d" , &auxCodigo);
+						for(i=0; i<CANT; i++){
+							if(tickets[i].codigo == auxCodigo && tickets[i].estado == 1 ){
+
+								/*
+								tickets[i].codigo=0;
+								tickets[i].nombre[0] = '\0';
+								tickets[i].apellido[0] = '\0';
+								tickets[i].horarioSalida= 0;
+								tickets[i].horarioLlegada= 0;
+								*/
+								tickets[i].estado = -1;
+								cantidadDatos--;
+								break;
+							}
+						}
+
+					}else{
+						printf("No hay datos cargados...");
+					}
+
+				break;
+
+				case 3:
+					if(cantidadDatos > 0){
+
+						printf("Codigo a modificar:  ");
+						scanf("%d" , &auxCodigo);
+
+						for(i=0; i<CANT; i++){
+
+							if(tickets[i].codigo == auxCodigo && tickets[i].estado == 1 ){
+								do{
+									printf("Menu modificar");
+									printf("1.Codigo");
+									printf("2.nombre");
+									printf("3.Apellido");
+									printf("4.Horario de salida");
+									printf("5.Horario de llegada");
+									printf("6.Salir");
+									printf("Opcion..");
+									scanf("%d" ,opcionModificar);
+
+									switch(opcionModificar){
+										case 1:
+											printf("codigo");
+											scanf("%d",tickets[i].codigo);
+										break;
+										case 2:
+											printf("nombre");
+											scanf("%[^\n]",tickets[i].nombre);
+										break;
+
+
+									}
+
+								}while();
+								tickets[i] = PedirDatosTicket();
+								break;
+							}
+						}
+					}else{
+
+						printf("No hay datos cargados...");
+					}
+
+				break;
+
+				case 4:
+				break;
+
+				case 5:
+				break;
+
+				case 6:
+				break;
+			}
+
+		}while(opcion!=5);
+
+	return EXIT_SUCCESS;
+
+}
+
+void mostrarTicket(eTicket unTicket){
+	printf("%d | %s |%s |%d | %d |\n" , unTicket.codigo , unTicket.nombre , unTicket.apellido ,unTicket.horaLlegada ,unTicket.horaSalida);
+}
+
+eTicket pedirDatosTicket(/*int codigo*/){
+	eTicket miTicket;
+	//para poner un codigo automatico
+	//miTicket.codigo=codigo;
+
+	printf("ingrese codigo de vuelo: ");
+	fflush(stdin);
+	scanf("%d" ,&miTicket.codigo);
+
+	printf("ingrese el nombre: ");
+	fflush(stdin);
+	scanf("%[^\n]" ,miTicket.nombre);//le saco el & porque es una cadena
+
+	printf("ingrese el apellido: ");
+	fflush(stdin);
+	scanf("%[^\n]" ,miTicket.apellido);
+
+	printf("ingrese horario de llegada: ");
+	fflush(stdin);
+	scanf("%d" ,&miTicket.horaLlegada);
+
+	printf("ingrese horario de salida: ");
+	fflush(stdin);
+	scanf("%d" ,&miTicket.horaSalida);
+
+	miTicket.estado=1;
+	return miTicket;
+}
+
+
+

@@ -1,0 +1,16 @@
+22:15:14 **** Incremental Build of configuration Debug for project programParcial[1] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\programParcial[1].o" "..\\src\\programParcial[1].c" 
+..\src\programParcial[1].c: In function 'invertirCadena':
+..\src\programParcial[1].c:58:9: error: assignment to expression with array type
+   58 |     aux = primerCadena[i];
+      |         ^
+..\src\programParcial[1].c:60:23: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   60 |     cadenaInvertida[j]=aux;
+      |                       ^
+..\src\programParcial[1].c:64:9: warning: returning 'char *' from a function with return type 'char' makes integer from pointer without a cast [-Wint-conversion]
+   64 |  return aux;
+      |         ^~~
+
+22:15:14 Build Failed. 1 errors, 2 warnings. (took 175ms)
+

@@ -1,0 +1,55 @@
+/*
+ * libraryArtistMusic.h
+ *
+ *  Created on: 30 abr. 2022
+ *      Author: maxim
+ */
+
+#ifndef LIBRARYARTISTMUSIC_H_
+#define LIBRARYARTISTMUSIC_H_
+
+#define TAM 51
+
+
+typedef struct
+{
+	int codGenero;
+	char descripcion[TAM];
+
+}gender;
+
+
+typedef struct
+{
+	int codArtista;
+	char nombre[TAM];
+
+}artist;
+
+
+typedef struct
+{
+	int codTypeArt;
+	char typeDes[TAM];
+
+}typeArtist;
+
+typedef struct
+{
+	int codAlbum;
+	char titulo[TAM];
+
+
+}Album;
+
+
+typedef struct
+{
+	int dia;
+	int mes;
+	int año;
+
+
+}fechaAmbum;
+
+#endif /* LIBRARYARTISTMUSIC_H_ */

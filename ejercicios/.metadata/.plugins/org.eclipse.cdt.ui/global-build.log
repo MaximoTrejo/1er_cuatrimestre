@@ -1,0 +1,9 @@
+23:37:18 **** Rebuild of configuration Debug for project 17-05-22 archivos ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\17-05-22 archivos.o" "..\\src\\17-05-22 archivos.c" 
+gcc -o "17-05-22 archivos.exe" "src\\17-05-22 archivos.o" 
+Info: Nothing to build for 17-05-22 archivos
+23:37:34 **** Incremental Build of configuration Debug for project 17-05-22 archivos ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\17-05-22 archivos.o" "..\\src\\17-05-22 archivos.c" 
+gcc -o "17-05-22 archivos.exe" "src\\17-05-22 archivos.o" 

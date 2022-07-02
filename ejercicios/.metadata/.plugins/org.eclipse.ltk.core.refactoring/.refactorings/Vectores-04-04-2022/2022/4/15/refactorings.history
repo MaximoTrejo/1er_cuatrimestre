@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Vectores-04-04-2022/src/vectores.c&apos; to &apos;vectores-04-04-2022.c&apos;" description="Rename resource &apos;vectores.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/vectores.c" name="vectores-04-04-2022.c" stamp="1649196299634" updateReferences="true"/>
+</session>

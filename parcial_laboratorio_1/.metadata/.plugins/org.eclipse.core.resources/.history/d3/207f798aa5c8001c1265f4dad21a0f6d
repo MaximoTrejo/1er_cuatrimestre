@@ -1,0 +1,14 @@
+/*
+ * libraryArtistMusic.c
+ *
+ *  Created on: 30 abr. 2022
+ *      Author: maxim
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#include "libraryArtistMusic.h"
+#include "utn.h"

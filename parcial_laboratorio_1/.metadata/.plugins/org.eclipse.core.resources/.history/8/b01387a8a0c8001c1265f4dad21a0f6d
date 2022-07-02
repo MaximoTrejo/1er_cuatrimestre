@@ -1,0 +1,22 @@
+/*
+ * libraryGender.h
+ *
+ *  Created on: 30 abr. 2022
+ *      Author: maxim
+ */
+
+#ifndef LIBRARYGENDER_H_
+#define LIBRARYGENDER_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "libraryAlbum.h"
+#include "libraryArtist.h"
+#include "libraryArtistType.h"
+#include "libraryGender.h"
+#include "utn.h"
+
+
+#endif /* LIBRARYGENDER_H_ */

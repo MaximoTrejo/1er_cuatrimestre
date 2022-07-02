@@ -1,0 +1,5 @@
+20:24:53 **** Clean-only build of configuration Debug for project codigoUtil ****
+rm -rf src/codigoUtil.d codigoUtil.exe src/codigoUtil.o 
+
+20:24:53 Build Finished. 0 errors, 0 warnings. (took 118ms)
+

@@ -1,0 +1,7 @@
+17:47:07 **** Incremental Build of configuration Debug for project 17-04-2022 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Alumno.o" "..\\src\\Alumno.c" 
+gcc -o 17-04-2022.exe "src\\17-04-2022.o" "src\\Alumno.o" 
+
+17:47:08 Build Finished. 0 errors, 0 warnings. (took 502ms)
+
