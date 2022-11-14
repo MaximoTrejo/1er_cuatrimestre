@@ -1,0 +1,29 @@
+/*
+ * bibliotecaAutor.h
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+#ifndef BIBLIOTECAAUTOR_H_
+#define BIBLIOTECAAUTOR_H_
+
+#define TAM 200
+#define CANT 10
+
+#define LIBRE 0
+#define OCUPADO 1
+
+#define REINTENTOS 5
+
+typedef struct
+{
+	int codAutor;//autompletar
+	char nombre[TAM];
+	ePais nacionalidad;
+
+}eAutor;
+
+#endif /* BIBLIOTECAAUTOR_H_ */
+
+

@@ -1,0 +1,33 @@
+/*
+ * bibliotecaEditorial.h
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+#ifndef BIBLIOTECAEDITORIAL_H_
+#define BIBLIOTECAEDITORIAL_H_
+
+
+#define TAM 200
+#define CANT 10
+
+#define LIBRE 0
+#define OCUPADO 1
+
+#define REINTENTOS 5
+
+
+typedef struct
+{
+	int codEditorial;//autompletar
+	char descripcion[TAM];
+
+}eEditorial;
+
+
+
+
+
+
+#endif /* BIBLIOTECAEDITORIAL_H_ */

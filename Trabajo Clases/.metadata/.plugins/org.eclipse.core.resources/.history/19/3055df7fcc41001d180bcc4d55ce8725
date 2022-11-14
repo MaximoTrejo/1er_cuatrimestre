@@ -1,0 +1,32 @@
+/*
+ * menu.h
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+#ifndef MENU_H_
+#define MENU_H_
+
+#define TAM 200
+#define CANT 10
+
+#define LIBRE 0
+#define OCUPADO 1
+
+#define REINTENTOS 5
+
+#define MIN 1
+#define MAX 100
+
+void menu (eLibro libros[],int tam);
+void menuOpciones(void);
+int BuscarLibre(eLibro libros[],int tam);
+void inicializarAE(eLibro libros[],int tam);
+void mostrarlibros(eLibro libros[],int tam);
+void mostrar(eLibro libros);
+float TotalImportes(eLibro libros[],int tam);
+int buscarID(eLibro libros[],int tam,int legajoABuscar);
+
+float TotalImportes(eLibro libros[],int tam , float * promedio);
+#endif /* MENU_H_ */

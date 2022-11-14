@@ -1,0 +1,5 @@
+14:42:39 **** Clean-only build of configuration Debug for project 14-09-22 Estructuras ****
+rm -rf "14-09-22 Estructuras.exe" "src/14-09-22 Estructuras.d" "src/14-09-22 Estructuras.o" 
+
+14:42:39 Build Finished. 0 errors, 0 warnings. (took 120ms)
+

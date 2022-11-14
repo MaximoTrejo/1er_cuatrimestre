@@ -1,0 +1,124 @@
+/*
+ ============================================================================
+ Name        : 8-2.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define TAM 200
+#define CANT 10
+
+#define LIBRE 0
+#define OCUPADO 1
+
+#define REINTENTOS 5
+
+void menuOpciones(void);
+
+typedef struct
+	{
+		char descripcion[20];
+		int idProducto;
+		char nacionalidad[20];
+		char tipo[20];
+		float precios;
+
+	}eProductos;
+
+
+int main(void) {
+
+	int opcion;
+		int lugarLibre;
+		int flagJugadores=0;
+		int idIngresado;
+		int idModificar;
+		int opcionListar;
+		float promedio=0;
+
+		do{
+
+			menuOpciones();
+			if(utn_getInt(&opcion,"ingrese la opcion", "Error", 1, 5, REINTENTOS)==0){}
+			switch(opcion){
+			case 1:
+
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			case 4:
+
+				break;
+			}
+		}while(opcion!=5);
+
+
+	return EXIT_SUCCESS;
+}
+
+
+
+
+
+
+void menuOpciones(void){
+	printf("Bienvenido");
+    printf("\n1) Alta.");
+    printf("\n2) Modificacion.");
+    printf("\n3) Baja.");
+    printf("\n4) Informar.");
+    printf("\n5) Salir.");
+}
+
+
+int AltaJugadores(eJugador jugadores[],eConfederacion confederacion[]){
+	int retorno=-1;//validacion que esta todo ok
+	char auxNombre[TAM];//aux donde se va a cargar el dato
+	char auxPosicion[TAM];
+	short auxNumeroCamisas;
+	int auxidConfederacion;
+	float auxSalarios;
+	short auxAniosContrato;
+
+	if(jugadores != NULL){//si esta vacio
+
+		if(utn_getCaracter(auxNombre, TAM, "ingrese el titulo", "error", REINTENTOS)==0){
+			if(utn_getCaracter(auxPosicion, TAM, "ingrese la posicion", "error", REINTENTOS)==0){
+				if(utn_getShortInt(&auxNumeroCamisas, "ingrese el numero de camiseta", "Error", 1, 25, REINTENTOS)==0){
+					mostrarConfederacion(TAM, confederacion);
+					if(utn_getInt(&auxidConfederacion, "ingrese la confederacion", "Error", 99, 105, REINTENTOS)==0){
+						if(utn_getNumeroFloat(&auxSalarios, "ingrese el salario", "Error", 1,9999, REINTENTOS)==0){
+							if(utn_getShortInt(&auxAniosContrato, "ingrese el anio", "Error", 1, 9999, REINTENTOS)==0){
+
+								strncpy(jugadores->nombre,auxNombre,sizeof(jugadores->nombre));
+								strncpy(jugadores->posicion,auxPosicion,sizeof(jugadores->posicion));
+								jugadores->numeraroCamisas=auxNumeroCamisas;
+								jugadores->idConfederacion=auxidConfederacion;
+								jugadores->salario=auxSalarios;
+								jugadores->aniosContrato=auxAniosContrato;
+								jugadores->id=dameUnIdNuevo();
+								jugadores->isEmpty=OCUPADO;
+
+								retorno=0;
+							}
+						}
+					}
+
+				}
+
+			}
+		}
+	}
+	return retorno;
+}

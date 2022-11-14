@@ -1,0 +1,224 @@
+/*
+ * menu.c
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "bibliotecaEditorial.h"
+#include "bibliotecaPais.h"
+#include "bibliotecaAutor.h"
+#include "bibliotecaLibro.h"
+#include "menu.h"
+#include "utn.h"
+
+void menu (eLibro libros[],int tam){
+
+	int opcion;//para el menu de opciones
+	int flagLibros=0;
+	int lugarLibre;
+	int idIngresado;
+	int idModificar;
+	float promedio=0;
+
+	do{
+		menuOpciones();
+		if(utn_getInt(&opcion,"\nIngresar opcion","Error\n", 1, 6,REINTENTOS)==0){};
+
+		switch(opcion)
+		{
+		   case 1:
+			   /*
+			    * busco que haya un lugar libre y despues llamo a los datos si este se completa
+			    * correctamente me muestra el mensaje
+			    */
+
+			   lugarLibre=BuscarLibre(libros,tam);
+			   if(lugarLibre != -1){
+				   if(AltaLibros(&libros[lugarLibre]) == 0){
+					   flagLibros++;
+					   printf("el dato se cargo correctamente\n");
+				   }else{
+					   printf("el dato no se cargo\n");
+				   }
+			   }
+
+			   break;
+
+		   case 2:
+			   /*
+			    * me fijo que el hayan cargado un libros
+			    * muestro los libros
+			    * pregunto al usuario que libro quiere modificar
+			    * busco el id ingresado por el usuario
+			    * le muestro las opciones que puede modificar
+			    * le pregunto otra ves el dato
+			    * le muestro otra ves el dato modificado
+			    */
+			   if(flagLibros>0){
+				   mostrarlibros(libros, tam);
+
+				   if(utn_getInt(&idIngresado, "ingrese el id buscado", "Error", MIN, MAX, REINTENTOS)==0){
+
+					   idModificar=buscarID(libros, tam, idIngresado);
+
+					   if(idModificar >=0){
+
+						   modificarLibros(libros, tam, idModificar);
+						   printf("ID\tTITULO\tDIA\tMES\tAÑO\tIMPORTE\n");
+						   mostrar(libros[idModificar]);
+
+
+					   }else{
+						   printf("El id no existe\n ");
+					   }
+				   }
+
+			   }else{
+				   printf("No hay ningun libro creado");
+			   }
+
+			   break;
+		   case 3:
+			   /*
+			    * me fijo que el hayan cargado un libro
+			    * muestro los libros
+			    * pregunto al usuario que libro quiere modifica
+			    * busco el id ingresado por el usuario
+			    * le cambio el estado
+			    * le confirmo al usuario que se borro
+			    */
+
+			   if(flagLibros>0){
+				   mostrarlibros(libros, tam);
+				   if(utn_getInt(&idIngresado, "ingrese el id ", "Error", MIN, MAX, REINTENTOS)==0){
+					   borrarLibros(libros, tam, idIngresado);
+					   flagLibros--;
+				   }
+			   }else{
+					printf("No hay libros cargados.....\n");
+				}
+
+			   break;
+
+		   case 4:
+			   if(flagLibros>0){
+				   mostrarlibros(libros, tam);
+				   printf("%f importe\n", TotalImportes(libros, tam,&promedio));
+				   printf("%f importe\n", promedio);
+
+			   }
+			   break;
+		   case 5:
+			   break;
+
+		}
+
+	}while(opcion !=6);
+
+
+}
+
+//Devuelve el indice de un empleado en cuestion
+int buscarID(eLibro libros[],int tam,int legajoABuscar)
+{
+	int indice;
+	indice = -1;//Si no encuentra al usuario
+
+	for(int i=0; i<tam; i++)
+    {
+	   if(libros[i].estado == LIBRE && libros[i].codLibro == legajoABuscar)
+	   {
+		   indice = i;
+		   break;
+	   }
+    }
+	return indice;
+}
+
+void inicializarAE(eLibro libros[],int tam){
+	for(int i=0; i<CANT; i++)
+	{
+			libros[i].estado = LIBRE;
+	}
+}
+
+
+
+void mostrarlibros(eLibro libros[],int tam){
+
+	if(libros != NULL && tam > 0 ) {
+
+		printf("ID\tTITULO\tDIA\tMES\tAÑO\tIMPORTE\n");
+		for(int i=0;i<tam;i++){
+			if(libros[i].estado==OCUPADO){
+				mostrar(libros[i]);
+			}
+		}
+	}
+}
+
+
+void mostrar(eLibro libros){
+	printf("%d\t%s\t%d\t%d\t%d\t%f\t\n",libros.codLibro,libros.titulo,libros.FechaPublicacion.dia,libros.FechaPublicacion.mes,libros.FechaPublicacion.anio,libros.importe);
+}
+
+void menuOpciones(void){
+	printf("Bienvenido");
+    printf("\n1) Alta.");
+    printf("\n2) Modificacion.");
+    printf("\n3) Baja.");
+    printf("\n4) Informar.");
+    printf("\n5) Listar.");
+    printf("\n6) Salir.");
+}
+
+//Devuelve el indice del proximo empleado inactivo que encuentre
+int BuscarLibre(eLibro libros[],int tam)
+{
+	int indice;
+	indice = -1;//Si no encuentra un usuario inactivo-> Si el array está lleno.
+	if(libros !=NULL && tam>0){
+
+		for(int i=0; i<tam; i++)
+		{
+			if(libros[i].estado == LIBRE)
+			{
+				indice = i;
+				break;
+			}
+		}
+	}
+	return indice;
+}
+
+
+
+float TotalImportes(eLibro libros[],int tam , float * promedio){
+	float total=0;
+	int contImporte=0;
+	if(libros !=NULL && tam>0){
+		for(int i=0;i<tam;i++){
+			if(libros[i].estado==OCUPADO ){
+				total=total+libros[i].importe;
+				contImporte++;
+			}
+		}
+		*promedio=promedioImporte(contImporte, total);
+	}
+	return total;
+}
+
+
+float promedioImporte(int cantidadImportes , float totalImporte){
+
+	int promedio=0;
+
+	if(cantidadImportes>0 && totalImporte>0){
+		promedio=totalImporte/(float)cantidadImportes;
+	}
+
+	return promedio;
+}

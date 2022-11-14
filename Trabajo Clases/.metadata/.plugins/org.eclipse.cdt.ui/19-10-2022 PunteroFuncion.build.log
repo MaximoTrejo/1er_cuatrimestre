@@ -1,0 +1,7 @@
+19:42:04 **** Incremental Build of configuration Debug for project 19-10-2022 PunteroFuncion ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\19-10-2022 PunteroFuncion.o" "..\\src\\19-10-2022 PunteroFuncion.c" 
+gcc -o "19-10-2022 PunteroFuncion.exe" "src\\19-10-2022 PunteroFuncion.o" 
+
+19:42:05 Build Finished. 0 errors, 0 warnings. (took 421ms)
+

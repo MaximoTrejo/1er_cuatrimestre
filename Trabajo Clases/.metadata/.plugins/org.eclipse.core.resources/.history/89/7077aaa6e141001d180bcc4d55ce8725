@@ -1,0 +1,28 @@
+/*
+ * bibliotecaAutor.c
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "bibliotecaEditorial.h"
+#include "bibliotecaPais.h"
+#include "bibliotecaAutor.h"
+#include "bibliotecaLibro.h"
+#include "menu.h"
+#include "utn.h"
+
+void mostrarAutor(eLibro libros[] , int tam){
+
+	if(libros != NULL && tam>0){
+		printf("CODAUTOR\tNOMBRE\tCODPAIS\tDESCRIPCION\n");
+		for(int i=0;i<tam;i++){
+			if(libros[i].estado==OCUPADO){
+				printf("%d\t%s\t%d\t%s\n",);
+			}
+		}
+	}
+}

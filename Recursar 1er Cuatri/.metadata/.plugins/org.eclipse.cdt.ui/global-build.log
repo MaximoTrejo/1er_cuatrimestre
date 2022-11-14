@@ -1,0 +1,6 @@
+20:07:46 **** Rebuild of configuration Debug for project 17-1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\17-1.o" "..\\src\\17-1.c" 
+gcc -o 17-1.exe "src\\17-1.o" 
+Info: Nothing to build for 15-1
+Info: Nothing to build for 17-1

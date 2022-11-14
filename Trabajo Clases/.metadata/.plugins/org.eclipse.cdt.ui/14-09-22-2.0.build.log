@@ -1,0 +1,7 @@
+18:33:48 **** Incremental Build of configuration Debug for project 14-09-22-2.0 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\14-09-22-2.0.o" "..\\src\\14-09-22-2.0.c" 
+gcc -o 14-09-22-2.0.exe "src\\14-09-22-2.0.o" 
+
+18:33:48 Build Finished. 0 errors, 0 warnings. (took 446ms)
+

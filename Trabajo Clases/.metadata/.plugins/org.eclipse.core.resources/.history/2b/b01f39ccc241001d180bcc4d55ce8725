@@ -1,0 +1,123 @@
+/*
+ * bibliotecaLibro.c
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "bibliotecaEditorial.h"
+#include "bibliotecaPais.h"
+#include "bibliotecaAutor.h"
+#include "bibliotecaLibro.h"
+#include "menu.h"
+#include "utn.h"
+
+static int dameUnIdNuevo(void);
+
+
+
+
+int AltaLibros(eLibro libros[]){
+	int retorno=-1;//validacion que esta todo ok
+	char auxTitulo[TAM];//aux donde se va a cargar el dato
+	int auxDia;//aux donde se va a cargar el dato
+	int auxMes;//aux donde se va a cargar el dato
+	int auxAnio;//aux donde se va a cargar el dato
+	float auxImporte;//aux donde se va a cargar el dato
+
+	if(libros!=NULL){//si esta vacio
+
+		if(utn_getCaracter(auxTitulo, TAM, "ingrese el titulo", "error", REINTENTOS)==0){
+			if(utn_getInt(&auxDia, "ingrese el dia", "error", MIN, MAX, REINTENTOS)==0){
+				if(utn_getInt(&auxMes, "ingrese el mes", "error", MIN, MAX, REINTENTOS)==0){
+					if(utn_getInt(&auxAnio, "ingrese el anio", "error", MIN, MAX, REINTENTOS)==0){
+						if(utn_getNumeroFloat(&auxImporte, "ingrese el importe", "error", MIN, MAX, REINTENTOS)==0){
+
+							strncpy(libros->titulo,auxTitulo,sizeof(libros->titulo));
+							libros->FechaPublicacion.dia=auxDia;
+							libros->FechaPublicacion.mes=auxMes;
+							libros->FechaPublicacion.anio=auxAnio;
+							libros->importe=auxImporte;
+							libros->estado=OCUPADO;
+							libros->codLibro=dameUnIdNuevo();
+							retorno=0;
+						}
+					}
+				}
+
+			}
+		}
+	}
+	return retorno;
+}
+
+static int dameUnIdNuevo(void) //privada del archivo
+{
+	static int contador=0;
+	contador++;//es global : mantiene su valor
+	return contador;
+}
+
+int modificarLibros(eLibro libros[] , int tam,int idMod){
+
+	int retorno=-1;//validacion que esta todo ok
+	char auxTitulo[TAM];//aux donde se va a cargar el dato
+	int auxDia;//aux donde se va a cargar el dato
+	int auxMes;//aux donde se va a cargar el dato
+	int auxAnio;//aux donde se va a cargar el dato
+	float auxImporte;//aux donde se va a cargar el dato
+	int opcion;
+	menuModificar();
+	if(utn_getInt(&opcion,"ingrese la opcion ", "Error", MIN, MAX, REINTENTOS)==0){
+
+
+		switch(opcion){
+		case 1:
+			if(utn_getCaracter(auxTitulo, TAM, "ingrese el titulo","Error", REINTENTOS)==0){
+				strncpy(libros[idMod]->titulo,auxTitulo,sizeof(libros->titulo));
+				retorno=0;
+			}
+				break;
+		case 2:
+			if(utn_getInt(&auxDia, "ingrese el dia", "Error", MIN, MAX, REINTENTOS)==0){
+				libros[idMod]->FechaPublicacion.dia=auxDia;
+				retorno=0;
+			}
+				break;
+		case 3:
+			if(utn_getInt(&auxMes, "ingrese el mes", "Error", MIN, MAX, REINTENTOS)==0){
+				libros[idMod]->FechaPublicacion.mes=auxMes;
+				retorno=0;
+			}
+				break;
+		case 4:
+			if(utn_getInt(&auxAnio, "ingrese el mes", "Error", MIN, MAX, REINTENTOS)==0){
+				libros[idMod]->FechaPublicacion.anio=auxAnio;
+				retorno=0;
+			}
+				break;
+		case 5:
+			if(utn_getNumeroFloat(&auxImporte, "ingresar el importe", "Error", MIN, MAX, REINTENTOS)==0){
+				libros->importe=auxImporte;
+				retorno=0;
+			}
+				break;
+		}
+
+	}
+
+	return retorno;
+}
+
+void menuModificar(void){
+	printf("MODIFICACION");
+    printf("\n1) Titulo.");
+    printf("\n2) dia.");
+    printf("\n3) mes.");
+    printf("\n4) anio.");
+    printf("\n5) importe.");
+    printf("\n6) Salir.");
+}

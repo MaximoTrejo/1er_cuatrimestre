@@ -1,0 +1,28 @@
+/*
+ ============================================================================
+ Name        : Parcial[1].c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "bibliotecaLibro.h"
+#include "menu.h"
+
+int main(void) {
+	setbuf(stdout, NULL);
+
+	eLibro libros[CANT];
+
+	inicializarAE(libros, CANT);
+
+	harcodeoLibros(libros, CANT);
+	menu(libros, CANT);
+
+
+	return EXIT_SUCCESS;
+}

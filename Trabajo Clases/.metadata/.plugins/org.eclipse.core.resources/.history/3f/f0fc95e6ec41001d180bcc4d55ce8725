@@ -1,0 +1,16 @@
+/*
+ * bibliotecaEditorial.c
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "bibliotecaEditorial.h"
+#include "bibliotecaPais.h"
+#include "bibliotecaAutor.h"
+#include "bibliotecaLibro.h"
+#include "menu.h"
+#include "utn.h"

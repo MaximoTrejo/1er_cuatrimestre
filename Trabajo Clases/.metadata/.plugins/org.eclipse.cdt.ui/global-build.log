@@ -1,0 +1,13 @@
+02:02:57 **** Rebuild of configuration Debug for project Ejercicio_prueProgramacion[1] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\dfgdffgh.o" "..\\src\\dfgdffgh.c" 
+gcc -o Ejercicio_prueProgramacion[1].exe "src\\dfgdffgh.o" 
+Info: Nothing to build for Ejercicio_prueProgramacion[1]
+02:03:11 **** Incremental Build of configuration Debug for project Ejercicio_prueProgramacion[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\dfgdfg.o" "..\\src\\dfgdfg.c" 
+..\src\dfgdfg.c: In function 'main':
+..\src\dfgdfg.c:15:8: warning: variable 'p' set but not used [-Wunused-but-set-variable]
+   15 |  FILE *p;//no pasa nada si no se usa
+      |        ^
+gcc -o Ejercicio_prueProgramacion[2].exe "src\\dfgdfg.o" 

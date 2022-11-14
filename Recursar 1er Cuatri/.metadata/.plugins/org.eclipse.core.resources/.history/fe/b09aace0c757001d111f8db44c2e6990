@@ -1,0 +1,189 @@
+/*
+ ============================================================================
+ Name        : 8-2.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define TAM 200
+#define CANT 10
+
+#define LIBRE 0
+#define OCUPADO 1
+
+#define REINTENTOS 5
+
+typedef struct
+	{
+		char descripcion[20];
+		int idProducto;
+		int nacionalidad;
+		int tipo;
+		float precios;
+		int estado;
+
+	}eProductos;
+
+void menuOpciones(void);
+int AltaLibros(eProductos productos);
+static int dameUnIdNuevo(void);
+
+
+
+int main(void) {
+
+	int opcion;
+		int lugarLibre;
+		int flagJugadores=0;
+		int idIngresado;
+		int idModificar;
+		int opcionListar;
+		float promedio=0;
+
+		do{
+
+			menuOpciones();
+			if(utn_getInt(&opcion,"ingrese la opcion", "Error", 1, 5, REINTENTOS)==0){}
+			switch(opcion){
+			case 1:
+
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			case 4:
+
+				break;
+			}
+		}while(opcion!=5);
+
+
+	return EXIT_SUCCESS;
+}
+
+
+
+
+
+
+void menuOpciones(void){
+	printf("Bienvenido");
+    printf("\n1) Alta.");
+    printf("\n2) Modificacion.");
+    printf("\n3) Baja.");
+    printf("\n4) Informar.");
+    printf("\n5) Salir.");
+}
+
+
+int AltaLibros(eProductos productos[]){
+	int retorno=-1;//validacion que esta todo ok
+	char auxdescripcion[TAM];//aux donde se va a cargar el dato
+	int auxNacional;
+	int auxtipo;
+	float auxprecios;
+
+	if(productos!=NULL){//si esta vacio
+
+		if(utn_getCaracter(auxdescripcion, TAM, "ingrese la descripcion", "error", REINTENTOS)==0){
+			if(utn_getInt(&auxNacional, "ingrese la nacionalidad", "error", 1, 3, REINTENTOS)==0){
+				if(utn_getInt(&auxtipo, "ingrese el tipo", "error", 1, 4, REINTENTOS)==0){
+					if(utn_getNumeroFloat(&auxprecios, "ingrese el importe", "error", 1, 9999, REINTENTOS)==0){
+
+						strncpy(productos->descripcion,auxdescripcion,sizeof(productos->descripcion));
+						productos->nacionalidad=auxNacional;
+						productos->tipo=auxtipo;
+						productos->precios=auxprecios;
+						productos->estado=OCUPADO;
+						productos->idProducto=dameUnIdNuevo();
+						retorno=0;
+					}
+				}
+			}
+		}
+	}
+	return retorno;
+}
+
+static int dameUnIdNuevo(void) //privada del archivo
+{
+	static int contador=0;
+	contador++;//es global : mantiene su valor
+	return contador;
+}
+
+
+int modificarLibros(eProductos productos[]){
+	int retorno=-1;//validacion que esta todo ok
+	int opcion;
+	char auxdescripcion[TAM];//aux donde se va a cargar el dato
+	int auxNacional;
+	int auxtipo;
+	float auxprecios;
+
+	menuModificar();
+	if(utn_getInt(&opcion, "ingrese la opcion", "Error", 1, 7, REINTENTOS)==0){
+		switch(opcion){
+		case 1:
+			if(utn_getCaracter(auxNombre, TAM, "ingrese el titulo", "error", REINTENTOS)==0){
+				strncpy(jugadores[idMod].nombre,auxNombre,sizeof(jugadores->nombre));
+				retorno=0;
+			}
+			break;
+		case 2:
+			if(utn_getCaracter(auxPosicion, TAM, "ingrese la posicion", "error", REINTENTOS)==0){
+				strncpy(jugadores[idMod].posicion,auxPosicion,sizeof(jugadores->posicion));
+				retorno=0;
+			}
+			break;
+		case 3:
+			if(utn_getShortInt(&auxNumeroCamisas, "ingrese el numero de camiseta", "Error", 1, 25, REINTENTOS)==0){
+				jugadores[idMod].numeraroCamisas=auxNumeroCamisas;
+				retorno=0;
+			}
+			break;
+		case 4:
+			mostrarConfederacion(TAM, confederacion);
+			if(utn_getInt(&auxidConfederacion, "ingrese la confederacion", "Error", 99, 105, REINTENTOS)==0){
+				jugadores[idMod].idConfederacion=auxidConfederacion;
+				retorno=0;
+			}
+			break;
+		case 5:
+			if(utn_getNumeroFloat(&auxSalarios, "ingrese el salario", "Error", 1,9999, REINTENTOS)==0){
+				jugadores[idMod].salario=auxSalarios;
+				retorno=0;
+			}
+			break;
+		case 6:
+			if(utn_getShortInt(&auxAniosContrato, "ingrese el anio", "Error", 1, 9999, REINTENTOS)==0){
+				jugadores[idMod].aniosContrato=auxAniosContrato;
+				retorno=0;
+			}
+			break;
+		}
+	}
+
+	return retorno;
+}
+
+
+void menuModificar(void){
+	printf("MODIFICACION");
+    printf("\n1) Producto.");
+    printf("\n2) Descripcion");
+    printf("\n3) Nacionalidad");
+    printf("\n4) Precio");
+    printf("\n5) Salir.");
+}
+

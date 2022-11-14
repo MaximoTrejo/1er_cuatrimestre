@@ -1,0 +1,31 @@
+15:12:49 **** Rebuild of configuration Debug for project dfdsfsadf ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\dfdsfsadf.o" "..\\src\\dfdsfsadf.c" 
+..\src\dfdsfsadf.c: In function 'main':
+..\src\dfdsfsadf.c:26:20: warning: passing argument 1 of 'strcmp' makes pointer from integer without a cast [-Wint-conversion]
+   26 |   if(strcmp(nombres[i],aux[j]) < 0){
+      |             ~~~~~~~^~~
+      |                    |
+      |                    char
+In file included from ..\src\dfdsfsadf.c:13:
+c:\mingw\include\string.h:77:46: note: expected 'const char *' but argument is of type 'char'
+   77 | _CRTIMP __cdecl __MINGW_NOTHROW  int strcmp (const char *, const char *) __MINGW_ATTRIB_PURE;
+      |                                              ^~~~~~~~~~~~
+..\src\dfdsfsadf.c:26:27: warning: passing argument 2 of 'strcmp' makes pointer from integer without a cast [-Wint-conversion]
+   26 |   if(strcmp(nombres[i],aux[j]) < 0){
+      |                        ~~~^~~
+      |                           |
+      |                           char
+In file included from ..\src\dfdsfsadf.c:13:
+c:\mingw\include\string.h:77:60: note: expected 'const char *' but argument is of type 'char'
+   77 | _CRTIMP __cdecl __MINGW_NOTHROW  int strcmp (const char *, const char *) __MINGW_ATTRIB_PURE;
+      |                                                            ^~~~~~~~~~~~
+..\src\dfdsfsadf.c:29:8: error: assignment to expression with array type
+   29 |    aux = nombres[i];
+      |        ^
+..\src\dfdsfsadf.c:31:15: warning: assignment to 'char' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+   31 |    nombres[j] = aux;
+      |               ^
+
+15:12:49 Build Failed. 1 errors, 3 warnings. (took 163ms)
+

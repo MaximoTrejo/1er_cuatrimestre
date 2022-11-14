@@ -1,0 +1,31 @@
+/*
+ * bibliotecaPais.h
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+#ifndef BIBLIOTECAPAIS_H_
+#define BIBLIOTECAPAIS_H_
+
+#define TAM 200
+#define CANT 10
+
+#define LIBRE 0
+#define OCUPADO 1
+
+#define REINTENTOS 5
+
+#define MIN 1
+#define MAX 100
+
+typedef struct
+{
+	int codPais;//autompletar
+	char descripcion[TAM];
+
+}ePais;
+
+
+
+#endif /* BIBLIOTECAPAIS_H_ */

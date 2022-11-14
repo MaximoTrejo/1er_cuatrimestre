@@ -1,0 +1,107 @@
+/*
+ ============================================================================
+ Name        : 24-10-22.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+
+typedef struct{
+
+	char nombre[50];
+	int edad;
+	int notaFinal;
+
+}eAlumnos;
+
+
+int main(void){
+
+	setbuf(stdout,NULL);
+	eAlumnos alumnos[50];
+	FILE * archivo;//apunta a cualquier cosa
+	FILE * archivoBinario;//apunta a cualquier cosa
+	//-------------
+	char auxNombre[100];
+	char auxEdad[5];
+	char Auxnota[5];
+	//-------------
+	int edad;
+	int notaFinal;
+	int retornoFscanf;
+
+	int i;
+
+	archivo=fopen("alumnos.csv","r");
+
+
+	/*
+	 *
+	 * archivo=fopen("alumnos.csv","r");
+	if(archivo != NULL){
+		fscanf(archivo,"%s\n",auxNombre);//falsa lectura
+
+		while(feof(archivo)==0){//feof llega al final del archivo , sino llega devuelve 1 sino 0
+		//for(int i=0;i<10;i++){
+			retornoFscanf=fscanf("%[^,],%[^,],%[^\n]\n",auxNombre,auxEdad,Auxnota);
+
+			if(retornoFscanf==3){
+
+				edad=atoi(edad);
+				notaFinal=atoi(notaFinal);
+				strycpy(alumnos[i].nombre,auxNombre);
+				alumnos[i].edad=edad;
+				alumnos[i].notaFinal=notaFinal;
+				i++;
+			}
+		}
+
+
+		fclose(archivo);//cerrar archivo
+
+	}else{
+		printf("Error");
+	}
+*/
+
+	if(archivo != NULL){
+			fscanf(archivo,"%s\n",auxNombre);//falsa lectura
+
+			while(feof(archivo)==0){//feof llega al final del archivo , sino llega devuelve 1 sino 0
+			//for(int i=0;i<10;i++){
+				retornoFscanf=fscanf("%[^,],%[^,],%[^\n]\n",auxNombre,auxEdad,Auxnota);
+
+				if(retornoFscanf==3){
+
+					edad=atoi(edad);
+					notaFinal=atoi(notaFinal);
+					strycpy(alumnos[i].nombre,auxNombre);
+					alumnos[i].edad=edad;
+					alumnos[i].notaFinal=notaFinal;
+					i++;
+				}
+			}
+
+
+			fclose(archivo);//cerrar archivo
+
+		}else{
+			printf("Error");
+		}
+
+
+	for(int j=0;j<10;j++){
+		printf("%s-%d-%d",alumnos[j].nombre, alumnos[j].edad,alumnos[j].notaFinal);
+	}
+
+	return EXIT_SUCCESS;
+}
+
+//https://onlinegdb.com/itgmGi-cR

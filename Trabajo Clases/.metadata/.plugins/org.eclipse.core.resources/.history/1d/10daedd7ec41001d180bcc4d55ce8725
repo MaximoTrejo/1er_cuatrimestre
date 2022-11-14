@@ -1,0 +1,53 @@
+/*
+ * bibliotecaLibro.h
+ *
+ *  Created on: 1 oct 2022
+ *      Author: maxim
+ */
+
+#ifndef BIBLIOTECALIBRO_H_
+#define BIBLIOTECALIBRO_H_
+
+#define TAM 200
+#define CANT 10
+
+#define LIBRE 0
+#define OCUPADO 1
+
+#define REINTENTOS 5
+
+#define MIN 1
+#define MAX 100
+
+typedef struct
+{
+	int dia;
+	int mes;
+	int anio;
+
+}eFecha;
+
+typedef struct
+{
+	int codLibro;//autompletar
+	char titulo[TAM];
+	eFecha FechaPublicacion;
+	float importe;
+	eAutor autor;
+	eEditorial editorial;
+	int estado;
+
+}eLibro;
+
+
+void menuModificar(void);
+
+int modificarLibros(eLibro libros[] , int tam,int idMod);
+int AltaLibros(eLibro libros[]);
+void harcodeoLibros(eLibro libro[],int tam);
+
+int borrarLibros(eLibro libros[] , int tam,int idMod);
+void mostrarAutor(eLibro libros[] , int tam);
+void mostrarPais(eLibro libros[] , int tam);
+void mostrarEditorial(eLibro libros[] , int tam);
+#endif /* BIBLIOTECALIBRO_H_ */

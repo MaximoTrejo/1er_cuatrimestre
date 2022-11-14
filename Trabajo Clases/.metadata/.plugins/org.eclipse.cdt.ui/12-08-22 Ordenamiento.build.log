@@ -1,0 +1,7 @@
+16:41:06 **** Rebuild of configuration Debug for project 12-08-22 Ordenamiento ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\12-08-22 Ordenamiento.o" "..\\src\\12-08-22 Ordenamiento.c" 
+gcc -o "12-08-22 Ordenamiento.exe" "src\\12-08-22 Ordenamiento.o" 
+
+16:41:06 Build Finished. 0 errors, 0 warnings. (took 423ms)
+

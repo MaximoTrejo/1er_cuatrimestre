@@ -1,0 +1,183 @@
+/*
+ * funciones.c
+ *
+ *  Created on: 14 sept 2022
+ *      Author: maxim
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "funciones.h"
+#include "utn.h"
+
+void menu(int costosT,int costosH,int costosC,int arqueros,int defensores,int medioCampo, int delanteros){
+	printf("1.Ingreso de los costos de Mantenimiento\n");
+	mostrarCantidadCostos(costosT, costosH, costosC);
+	printf("2.Carga de jugadores\n");
+	mostrarOpcionArqueros(arqueros, defensores, medioCampo, delanteros);
+	printf("3.Realizar todos los cálculos\n");
+	printf("4.Informar todos los resultados\n");
+	printf("5.Salir\n");
+}
+
+void menuJugaror(void){
+	printf("1.Arqueros\n");
+	printf("2.Defensores\n");
+	printf("3.MedioCampistas\n");
+	printf("4.Delanteros\n");
+}
+
+
+int pedirCostos(int *costosT,int *costosH,int *costosC){
+	int retorno=1;//error
+	int auxCostosT;
+	int auxCostosH;
+	int auxcostosC;
+	if(utn_getInt(&auxCostosT, "Ingrese costos de trabajo", "error", 0, 1000, 2)==0){
+		if(utn_getInt(&auxCostosH, "Ingrese costos de hospedaje", "error", 0, 1000, 2)==0){
+			if(utn_getInt(&auxcostosC, "Ingrese costos de cocina", "error", 0, 1000, 2)==0){
+
+				*costosH=auxCostosH;
+				*costosC=auxcostosC;
+				*costosT=auxCostosT;
+				retorno=0;
+			}
+		}
+	}
+
+
+	return retorno;
+}
+
+int pedirArqueros(int *arqueros,int *defensores,int *medioCampo, int *delanteros, char confederacion[]){
+	int retorno=1;//error
+
+	int opcion;
+	int numCamiseta;
+	int posicion;
+
+	menuJugaror();
+	if(utn_getInt(&opcion, "Ingrese el jugaror que quiere ingresar", "error", 1, 4, 2)==0){
+		switch(opcion){
+		case 1:
+			if(*arqueros<2){
+				pedirJugadores(&numCamiseta, &posicion, confederacion);
+				*arqueros=*arqueros+1;
+			}else{
+				printf("No se pueden agregar mas de 2 arqueros\n");
+			}
+			break;
+		case 2:
+			if(*arqueros<8){
+				pedirJugadores(&numCamiseta, &posicion, confederacion);
+				*defensores=*defensores+1;
+			}else{
+				printf("No se pueden agregar mas de 8 defensores\n");
+			}
+			break;
+		case 3:
+			if(*medioCampo<8){
+			pedirJugadores(&numCamiseta, &posicion, confederacion);
+			*medioCampo=*medioCampo+1;
+			}else{
+				printf("No se pueden agregar mas de 8 medioCampistas\n");
+			}
+			break;
+		case 4:
+			if(*delanteros<4){
+				pedirJugadores(&numCamiseta, &posicion, confederacion);
+				*delanteros=*delanteros+1;
+			}else{
+				printf("No se pueden agregar mas de 4 delanteros\n");
+			}
+			break;
+		}
+	}
+	return retorno;
+}
+
+int pedirJugadores(int *numCamiseta,int *posicion,char *confederacion){
+	int retorno=1;//error
+	int auxNumCam;
+	int auxPosicion;
+	char auxConfederacion[10];
+	if(utn_getInt(&auxNumCam, "Ingrese numero de camiseta", "error", 0, 1000, 2)==0){
+		if(utn_getInt(&auxPosicion, "Ingrese numero de posicion", "error", 1, 22, 2)==0){
+			if(utn_getCaracter(auxConfederacion,10, "Ingrese la confederacion(AFC ,CAF,CONCACAF,CONMEBOL,UEFA,OFC)",  "error", 2)==0){
+
+				*numCamiseta=auxNumCam;
+				*posicion=auxPosicion;
+				strncpy(confederacion,auxConfederacion,10);
+				retorno=0;
+			}
+		}
+	}
+
+	return retorno;
+}
+
+
+void calcularTodo(char confederacion[], int totalJugadores){
+	int contAFC=0;
+	int contCAF=0;
+	int contCONCACAF=0;
+	int contCONMEBOL=0;
+	int contUEFA=0;
+	int contOFC=0;
+
+	if(strcmp(confederacion,"AFC")==0){
+		contAFC++;
+		promedio(contAFC,totalJugadores);
+	}else if(strcmp(confederacion,"CAF")==0){
+		contCAF++;
+		promedio(contCAF,totalJugadores);
+	}else if(strcmp(confederacion,"CONCACAF")==0){
+		contCONCACAF++;
+		promedio(contCONCACAF,totalJugadores);
+	}else if(strcmp(confederacion,"CONMEBOL")==0){
+		contCONMEBOL++;
+		promedio(contCONMEBOL,totalJugadores);
+	}else if(strcmp(confederacion,"UEFA")==0){
+		contUEFA++;
+		promedio(contUEFA,totalJugadores);
+	}else{
+		contOFC++;
+		promedio(contOFC,totalJugadores);
+	}
+
+	printf("Se calcularon correctamente los datos\n");
+}
+
+
+float promedio(int contConfederacion , int total){
+
+	float promedioConfederacion;
+
+	printf("total %d",total);
+
+	if(total>0){
+		promedioConfederacion=contConfederacion/total;
+		printf("el promedio es %f",promedioConfederacion);
+	}else{
+		printf("no se puede calcular el promedio");
+	}
+
+	return promedioConfederacion;
+}
+
+
+void mostrarOpcionArqueros(int arqueros,int defensores,int medioCampo, int delanteros){
+	printf("Arqueros -> %d\n",arqueros);
+	printf("Defensores -> %d\n",defensores);
+	printf("Mediocampistas -> %d\n",medioCampo);
+	printf("Delanteros -> %d\n",delanteros);
+}
+
+
+void mostrarCantidadCostos(int costosT,int costosH,int costosC){
+
+	printf("costosHospedaje -> %d\n",costosH);
+	printf("costosComida -> %d\n",costosC);
+	printf("costosTrasnporte -> %d\n",costosT);
+}

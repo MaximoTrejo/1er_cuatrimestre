@@ -1,0 +1,58 @@
+/*
+ ============================================================================
+ Name        : 1er.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "funciones.h"
+#include "utn.h"
+
+int main(void) {
+
+	setbuf(stdout,NULL);
+	int opcion;
+	int costosHospedaje=0;
+	int costosComida=0;
+	int costosTransporte=0;
+	int arqueros=0;
+	int defensores=0;
+	int medioCampo=0;
+	int delanteros=0;
+	int contJugadores=0;
+	char confederacion[10];
+
+	do{
+
+		menu(costosTransporte, costosHospedaje, costosComida,arqueros,defensores,medioCampo,delanteros);
+		if(utn_getInt(&opcion,"Ingrese la opcion", "Error", 1, 5, 10)==0){};
+
+		switch(opcion){
+		case 1:
+			if(pedirCostos(&costosTransporte, &costosHospedaje, &costosComida)==1){}
+			break;
+		case 2:
+			if(contJugadores<22){
+				if(pedirArqueros(&arqueros, &defensores, &medioCampo, &delanteros, confederacion)==1){}
+			}else{
+				printf("El total de jugadores de un equipo es 22 .No puede ingresar mas jugadores\n");
+			}
+			break;
+		case 3:
+			calcularTodo(confederacion,contJugadores);
+			break;
+		case 4:
+			break;
+		}
+
+
+
+	}while(opcion != 5);
+
+	return EXIT_SUCCESS;
+}

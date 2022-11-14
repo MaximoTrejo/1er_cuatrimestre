@@ -1,0 +1,53 @@
+/*
+ ============================================================================
+ Name        : 24-10-22.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+
+typedef struct{
+
+	char nombre[50];
+	int id;
+	int notaFinal;
+
+}eAlumnos;
+
+
+int main(void){
+
+	setbuf(stdout,NULL);
+	eAlumnos alumnos[50];
+	FILE * archivo;//apunta a cualquier cosa
+	//-------------
+	char auxNombre[100];
+	char auxEdad[5];
+	char Auxnota[5];
+	//-------------
+	int retornoFscanf;
+
+	archivo=fopen("alumnos.csv","r");
+
+	if(archivo == NULL){
+
+		retornoFscanf=fscanf("%[^,],%[^,],%[^\n]\n",auxNombre,auxEdad,Auxnota);
+		printf("%s-%s-%s",auxNombre,auxEdad,Auxnota);
+
+		fclose(archivo);//cerrar archivo
+
+	}else{
+		printf("Error");
+	}
+
+	return EXIT_SUCCESS;
+}
+
+//https://onlinegdb.com/itgmGi-cR

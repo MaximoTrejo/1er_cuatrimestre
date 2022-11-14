@@ -1,0 +1,82 @@
+/*
+ ============================================================================
+ Name        : 8-2.c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define TAM 200
+#define CANT 10
+
+#define LIBRE 0
+#define OCUPADO 1
+
+#define REINTENTOS 5
+
+void menuOpciones(void);
+
+typedef struct
+	{
+		char descripcion[20];
+		int idProducto;
+		char nacionalidad[20];
+		char tipo[20];
+		float precios;
+
+	}eJugador;
+
+
+int main(void) {
+
+	int opcion;
+		int lugarLibre;
+		int flagJugadores=0;
+		int idIngresado;
+		int idModificar;
+		int opcionListar;
+		float promedio=0;
+
+		do{
+
+			menuOpciones();
+			if(utn_getInt(&opcion,"ingrese la opcion", "Error", 1, 5, REINTENTOS)==0){}
+			switch(opcion){
+			case 1:
+
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			case 4:
+
+				break;
+			}
+		}while(opcion!=5);
+
+
+	return EXIT_SUCCESS;
+}
+
+
+
+
+
+
+void menuOpciones(void){
+	printf("Bienvenido");
+    printf("\n1) Alta.");
+    printf("\n2) Modificacion.");
+    printf("\n3) Baja.");
+    printf("\n4) Informar.");
+    printf("\n5) Salir.");
+}
