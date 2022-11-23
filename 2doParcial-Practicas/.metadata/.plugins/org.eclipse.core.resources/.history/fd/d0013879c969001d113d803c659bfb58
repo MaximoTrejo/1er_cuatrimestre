@@ -1,0 +1,12 @@
+/*
+ * computer.c
+ *
+ *  Created on: 21 nov 2022
+ *      Author: maxim
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "computer.h"

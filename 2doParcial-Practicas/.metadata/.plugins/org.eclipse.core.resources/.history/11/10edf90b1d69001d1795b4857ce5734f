@@ -1,0 +1,105 @@
+#define REINTENTOS 5
+#define TAM 500
+
+
+int controller_cargarArchivoDesdeTexto(char* path , LinkedList* pArrayList);
+int controller_cargarArchivoDesdeBinario(char* path , LinkedList* pArrayList);
+int controller_listar(LinkedList* pArrayList);
+
+int controller_asignarPromedio(LinkedList* pArrayList);
+
+int controller_generarArchivo(char* path , LinkedList* pArrayListJugador)
+{
+	int retorno=-1;
+
+	int auxIdSeleccion;
+	LinkedList * listaConfederacion=ll_newLinkedList();
+	eJugador * jugadores;
+	int largo;
+	int idIngresado;
+	//int idBuscado;
+	FILE * archivoJugadores;
+	archivoJugadores=fopen(path,"wb");
+
+	if(pArrayListJugador != NULL){
+		largo=ll_len(pArrayListJugador);
+		if(largo > 0){
+
+
+			menuConvocaciones();
+			if(utn_getInt(&idIngresado,"ingrese la confederacion ","Error", 1, 6, REINTENTOS)==0){
+
+				switch(idIngresado){
+					case 1:
+						for(int i=0 ;i<largo ;i++){
+							jugadores=ll_get(pArrayListJugador, i);
+							jug_getSIdSeleccion(jugadores, &auxIdSeleccion);
+
+							if(controller_buscarConfederacion(pArrayListSeleccion, auxIdSeleccion,"AFC")==1){
+								ll_add(listaConfederacion, jugadores);
+
+							}
+						}
+						break;
+					case 2:
+						for(int i=0 ;i<largo ;i++){
+							jugadores=ll_get(pArrayListJugador, i);
+							jug_getSIdSeleccion(jugadores, &auxIdSeleccion);
+
+							if(controller_buscarConfederacion(pArrayListSeleccion, auxIdSeleccion,"CAF")==1){
+								ll_add(listaConfederacion, jugadores);
+
+							}
+						}
+
+						break;
+					case 3:
+						for(int i=0 ;i<largo ;i++){
+							jugadores=ll_get(pArrayListJugador, i);
+							jug_getSIdSeleccion(jugadores, &auxIdSeleccion);
+
+							if(controller_buscarConfederacion(pArrayListSeleccion, auxIdSeleccion,"CONCACAF")==1){
+								ll_add(listaConfederacion, jugadores);
+							}
+						}
+						break;
+					case 4:
+						for(int i=0 ;i<largo ;i++){
+							jugadores=ll_get(pArrayListJugador, i);
+							jug_getSIdSeleccion(jugadores, &auxIdSeleccion);
+
+							if(controller_buscarConfederacion(pArrayListSeleccion, auxIdSeleccion,"CONMEGOL")==1){
+								ll_add(listaConfederacion, jugadores);
+
+								}
+							}
+						break;
+					case 5:
+						for(int i=0 ;i<largo ;i++){
+							jugadores=ll_get(pArrayListJugador, i);
+							jug_getSIdSeleccion(jugadores, &auxIdSeleccion);
+
+							if(controller_buscarConfederacion(pArrayListSeleccion, auxIdSeleccion,"UEFA")==1){
+								ll_add(listaConfederacion, jugadores);
+							}
+						}
+						break;
+				}
+
+				for(int i=0 ;i<ll_len(listaConfederacion) ;i++){
+
+					jugadores=ll_get(listaConfederacion, i);
+
+					if(jugadores!=NULL){
+
+						fwrite(jugadores,sizeof(eJugador),1,archivoJugadores);
+					}
+					retorno=1;
+				}
+				fclose(archivoJugadores);
+			}
+		}
+	}
+//retorno
+	return retorno;
+}

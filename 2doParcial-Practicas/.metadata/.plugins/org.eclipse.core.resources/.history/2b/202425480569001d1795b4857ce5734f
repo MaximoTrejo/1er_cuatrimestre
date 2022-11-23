@@ -1,0 +1,178 @@
+/*
+ * participantes.c
+ *
+ *  Created on: 20 nov 2022
+ *      Author: maxim
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include "participantes.h"
+
+
+eParticipantes * list_new(){
+	eParticipantes* pParticipantes;
+
+	//creo un puntero y le asigno un espacio en memoria
+
+	pParticipantes=(eParticipantes*)malloc(sizeof(eParticipantes));
+
+	return pParticipantes;
+}
+
+
+eParticipantes* list_newParametros(char* idStr,char* nombreStr,char* categoriaStr, char* tiempoStr, char* promedioStr){
+
+	eParticipantes* pParticipantes;
+	 pParticipantes=jug_new();
+
+	if( pParticipantes != NULL){
+
+		par_setId(pParticipantes, atoi(idStr));
+		par_setNombre(pParticipantes, nombreStr);
+		par_setCategoria(pParticipantes, categoriaStr);
+		par_setTiempo(pParticipantes,atoi(tiempoStr));
+		par_setPromedio(pParticipantes, atoi(promedioStr));
+
+	}
+
+	return pParticipantes;
+}
+
+
+
+//set y get ID
+int par_setId(eParticipantes* this,int id){
+	int retorno=-1;
+
+	//valido que no traiga basura
+	if(this != NULL && id > 0){
+		//se asigno el id en la estructura
+		this->id=id;
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+int par_getId(eParticipantes* this,int* id){
+	int retorno=-1;
+
+	//verifico que no traiga basura
+	if(this != NULL && id != NULL){//al ser puntero verifico que no venga con basura
+		//le asingno al puntero id el dato de la estructura
+		*id=this->id;//guardo el legajo en el puntero y se devuelve
+		retorno=0;
+	}
+
+	return retorno;
+}
+
+//set y get nombre
+int par_setNombre(eParticipantes* this,char* nombre){
+	int retorno=-1;
+	//valido que no traiga basura
+	if(this != NULL && nombre != NULL){
+		//se asigno el id en la estructura
+		strcpy(this->nombre,nombre);
+		retorno=0;
+	}
+		return retorno;
+}
+
+int Categoria(eParticipantes* this,char* nombre){
+	int retorno=-1;
+	//verifico que no traiga basura
+	if(this != NULL && nombre != NULL){//al ser puntero verifico que no venga con basura
+		//en este caso estoy copiendo en el puntero el dato de la estructura
+		strcpy(nombre,this->nombre);
+
+		retorno=0;
+	}
+	return retorno;
+}
+
+//set y get categoria
+int par_setCategoria(eParticipantes* this,char* categoria){
+	int retorno=-1;
+	//valido que no traiga basura
+	if(this != NULL && categoria != NULL){
+		//se asigno el id en la estructura
+		strcpy(this->categoria,categoria);
+		retorno=0;
+	}
+		return retorno;
+}
+
+
+int par_getCategoria(eParticipantes* this,char* Categoria){
+	int retorno=-1;
+	//verifico que no traiga basura
+	if(this != NULL && Categoria != NULL){//al ser puntero verifico que no venga con basura
+		//en este caso estoy copiendo en el puntero el dato de la estructura
+		strcpy(Categoria,this->categoria);
+
+		retorno=0;
+	}
+	return retorno;
+}
+
+//set y get tiempo
+int par_setTiempo(eParticipantes* this,int tiempo){
+	int retorno=-1;
+
+	//valido que no traiga basura
+	if(this != NULL &&  tiempo > 0){
+		//se asigno el id en la estructura
+		this->tiempo= tiempo;
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+int par_getTiempo(eParticipantes* this,int*tiempo){
+	int retorno=-1;
+
+	//verifico que no traiga basura
+	if(this != NULL &&  tiempo != NULL){//al ser puntero verifico que no venga con basura
+		//le asingno al puntero id el dato de la estructura
+		*tiempo=this->tiempo;//guardo el legajo en el puntero y se devuelve
+		retorno=0;
+	}
+
+	return retorno;
+}
+
+
+//set y get prmedio
+int par_setPromedio(eParticipantes* this,int promedio){
+	int retorno=-1;
+
+	//valido que no traiga basura
+	if(this != NULL &&  promedio > 0){
+		//se asigno el id en la estructura
+		this->promedio= promedio;
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+int par_getPromedio(eParticipantes* this,int*promedio){
+	int retorno=-1;
+
+	//verifico que no traiga basura
+	if(this != NULL &&  promedio != NULL){//al ser puntero verifico que no venga con basura
+		//le asingno al puntero id el dato de la estructura
+		*promedio=this->promedio;//guardo el legajo en el puntero y se devuelve
+		retorno=0;
+	}
+	return retorno;
+}
+
+
+

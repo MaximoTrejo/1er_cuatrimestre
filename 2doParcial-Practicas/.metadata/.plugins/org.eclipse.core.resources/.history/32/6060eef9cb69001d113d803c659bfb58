@@ -1,0 +1,32 @@
+/*
+ * computer.h
+ *
+ *  Created on: 21 nov 2022
+ *      Author: maxim
+ */
+
+#ifndef COMPUTER_H_
+#define COMPUTER_H_
+
+typedef struct
+{
+	int id;
+	char descripcion[100];
+	float precio;
+	int idTipo;
+
+}eComputer;
+
+eComputer * list_new();
+eComputer* list_newParametros(char* idStr,char* descripcionStr,char* precioStr, char* idTipoStr);
+int com_setId(eComputer* this,int id);
+int com_getId(eComputer* this,int* id);
+int com_setDescripcion(eComputer* this,char* descripcion);
+int com_getDescripcion(eComputer* this,char* descripcion);
+int com_setPrecio(eComputer* this,int precio);
+int com_getprecio(eComputer* this,int* precio);
+int com_setIdTipo(eComputer* this,int idTipo);
+int com_getIdTipo(eComputer* this,int* idTipo);
+
+
+#endif /* COMPUTER_H_ */

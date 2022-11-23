@@ -1,0 +1,35 @@
+
+#ifndef PARSER_H_
+#define PARSER_H_
+
+
+////@brief lee los datos del archivo de jugadores y los guarda en la estructura
+////@fnint int parser_JugadorFromText(FILE* pFile , LinkedList* pArrayListJugador);
+////@param FILE* pFile(archivo abierto)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int parser_JugadorFromText(FILE* pFile , LinkedList* pArrayListJugador);
+////@brief lee los datos del archivo de jugadores y los guarda en la estructura
+////@fnint int parser_JugadorFromBinary(FILE* pFile , LinkedList* pArrayListJugador);
+////@param FILE* pFile(archivo abierto)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int parser_JugadorFromBinary(FILE* pFile , LinkedList* pArrayListJugador);
+////@brief lee los datos del archivo de seleccion y los guarda en la estructura
+////@fnint int parser_SeleccionFromText(FILE* pFile , LinkedList* pArrayListSeleccion);
+////@param FILE* pFile(archivo abierto)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int parser_SeleccionFromText(FILE* pFile , LinkedList* pArrayListSeleccion);
+////@brief lee los datos del archivo de jugadores y los guarda en la estructura
+////@fnint int parser_SeleccionFromText(FILE* pFile , LinkedList* pArrayListSeleccion);
+////@param FILE* pFile(archivo abierto)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int parser_JugadorFromBinary(FILE* pFile , LinkedList* pArrayListJugador);
+////@brief lee o crea un archivo en donde se encuentra el ultimo id de jugadores
+////@fnint int parser_idFantasma(void);
+////@return 1[BIEN] | -1[MAL]
+int parser_idFantasma(void);
+
+#endif /* PARSER_H_ */

@@ -1,13 +1,11 @@
-02:02:57 **** Rebuild of configuration Debug for project Ejercicio_prueProgramacion[1] ****
+13:53:38 **** Rebuild of configuration Debug for project Final_Laboratorio[I] ****
 Info: Internal Builder is used for build
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\dfgdffgh.o" "..\\src\\dfgdffgh.c" 
-gcc -o Ejercicio_prueProgramacion[1].exe "src\\dfgdffgh.o" 
-Info: Nothing to build for Ejercicio_prueProgramacion[1]
-02:03:11 **** Incremental Build of configuration Debug for project Ejercicio_prueProgramacion[2] ****
-Info: Internal Builder is used for build
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\dfgdfg.o" "..\\src\\dfgdfg.c" 
-..\src\dfgdfg.c: In function 'main':
-..\src\dfgdfg.c:15:8: warning: variable 'p' set but not used [-Wunused-but-set-variable]
-   15 |  FILE *p;//no pasa nada si no se usa
-      |        ^
-gcc -o Ejercicio_prueProgramacion[2].exe "src\\dfgdfg.o" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Final_Laboratorio[I].o" "..\\src\\Final_Laboratorio[I].c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Parser.o" "..\\src\\Parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Biblioteca.o" "..\\src\\Biblioteca.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Participante.o" "..\\src\\Participante.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LinkedList.o" "..\\src\\LinkedList.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Controller.o" "..\\src\\Controller.c" 
+gcc -o Final_Laboratorio[I].exe "src\\Biblioteca.o" "src\\Controller.o" "src\\Final_Laboratorio[I].o" "src\\LinkedList.o" "src\\Parser.o" "src\\Participante.o" 
+Info: Nothing to build for Final_Laboratorio[I]
+Info: Nothing to build for Final_Laboratorio[I]

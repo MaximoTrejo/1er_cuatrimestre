@@ -1,0 +1,22 @@
+/*
+ * computer.h
+ *
+ *  Created on: 21 nov 2022
+ *      Author: maxim
+ */
+
+#ifndef COMPUTER_H_
+#define COMPUTER_H_
+
+typedef struct
+{
+	int id;
+	char descripcion[100];
+	float precio;
+	int idTipo;
+
+}eComputer;
+
+
+
+#endif /* COMPUTER_H_ */

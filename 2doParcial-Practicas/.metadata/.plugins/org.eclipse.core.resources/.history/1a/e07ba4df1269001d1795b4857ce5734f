@@ -1,0 +1,7 @@
+#define REINTENTOS 5
+#define TAM 500
+
+
+int controller_cargarArchivoDesdeTexto(char* path , LinkedList* pArrayList);
+int controller_cargarArchivoDesdeBinario(char* path , LinkedList* pArrayList);
+int controller_listar(LinkedList* pArrayList);

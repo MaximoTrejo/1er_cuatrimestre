@@ -1,0 +1,55 @@
+/*
+ * menu.c
+ *
+ *  Created on: 5 nov 2022
+ *      Author: maxim
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "menu.h"
+
+
+
+void opcionesMenu(void){
+	printf(
+	"Menu:\n"
+	"1. Cargar de archivos .csv\n"
+	"2. Imprimir Lista\n"
+	"3. Asignar Promedios\n"
+	"4. Filtrar por tipo\n"
+	"5. Mostrar posiciones\n"
+	"6. Guardar Posiciones\n"
+	"11. Salir\n");
+}
+
+
+void menuModificar(void){
+	printf("MODIFICACION");
+    printf("\n1) Nombre.");
+    printf("\n2) Edad");
+    printf("\n3) Posicion");
+    printf("\n4) Nacionalidad");
+    printf("\n5) Salir.");
+}
+
+
+void menuListar(void){
+	printf("LISTAR");
+	printf("\n1) Todos los jugadores");
+	printf("\n2) Todas las selecciones");
+	printf("\n3) Jugadores Convocados");
+	printf("\n4) Salir.");
+}
+
+void menuElegirOrdenaiento(void){
+	printf("ORDENAR");
+	printf("\n1) Jugadores");
+	printf("\n2) Seleccion por confederacion");
+	printf("\n3) Salir.");
+}
+
+
+

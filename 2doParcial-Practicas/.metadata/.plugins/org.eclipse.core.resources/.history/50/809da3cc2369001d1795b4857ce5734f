@@ -1,0 +1,249 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include "LinkedList.h"
+#include "Controller.h"
+#include "menu.h"
+#include "utn.h"
+#include "parser.h"
+#include "participantes.h"
+
+/** \brief Carga los datos de los jugadores desde el archivo jugadores.csv (modo texto).
+ *
+ * \param path char*
+ * \param pArrayListJugador LinkedList*
+ * \return int
+ *
+ */
+int controller_cargarArchivoDesdeTexto(char* path , LinkedList* pArrayList)
+{
+	int retorno=-1;
+
+	/*
+	 * abro el archivo en modo lectura
+	 * valido
+	 * llamo la funcion de parcel
+	 * cierro el archivo
+	 */
+
+	FILE * archivo;
+	archivo=fopen(path,"r");
+
+	if(archivo != NULL){
+
+		if(parser_FromText(archivo, pArrayList)==1){
+			printf("*Se leyeron correstamente los datos \n");
+			retorno=1;
+		}else{
+			printf("*No se leyo correstamente los datos\n");
+			retorno=0;
+		}
+	}
+    return retorno;
+}
+
+
+/** \brief Listar jugadores
+ *
+ * \param path char*
+ * \param pArrayListJugador LinkedList*
+ * \return int
+ *
+*/
+int controller_listar(LinkedList* pArrayList)
+{
+	int retorno=-1;
+	int largo;
+
+	int auxId;
+	char auxNombre[TAM];
+	char auxCategoria[TAM];
+	int auxtiempo;
+	float auxPromedio;
+
+	eParticipantes* participantes;
+
+	if(pArrayList!=NULL){
+		printf("ID\t\tNOMBRE\t\tCATEGORIA\t\tTIEMPO\t\tPROMEDIO\n");
+		largo=ll_len(pArrayList);
+
+		for(int i=0;i<largo;i++){
+				participantes=ll_get(pArrayList, i);
+
+				if(participantes != NULL){
+
+					par_getId(participantes, &auxId);
+					par_getNombre(participantes, auxNombre);
+					par_getCategoria(participantes, auxCategoria);
+					par_getTiempo(participantes, &auxtiempo);
+					par_getPromedio(participantes, &auxPromedio);
+
+					printf("%d,%s,%s,%d,%f\n",auxId,auxNombre,auxCategoria,auxtiempo,auxPromedio);
+					retorno=1;
+				}
+		}
+	}
+    return retorno;
+}
+
+
+
+int controller_asignarPromedio(LinkedList* pArrayList){
+
+	//valido
+	int retorno = -1;
+	//creo la funcion puntero
+	void (*pFunc)(void *this);//es el eComputer
+
+	if(pArrayList != NULL){
+		pFunc=asignarPromedio;
+
+		if(ll_map(pArrayList, pFunc)==0){
+			retorno=0;
+		}
+	}
+	return retorno;
+}
+
+
+LinkedList * controller_filtrar(LinkedList *pArrayList , LinkedList * pAuxArrayList ){
+
+	/*
+	 * creo la funcion contructor
+	 * pregunto que tipo quiero que filtre
+	 * comparo el tipo
+	 * lo paso al ll_filtro
+	 */
+	int opcion=-1;
+	int (*pFunc)(void *this);
+
+	if(pArrayList != NULL){
+		opcionFiltrarTipo();
+		if(utn_getInt(&opcion,"ingrese el tipo", "Error", 1, 5, REINTENTOS)==0){
+			switch(opcion){
+				case 1:
+					pFunc=filtrarTipoMX1;
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+			}
+
+			pAuxArrayList = ll_filter(pArrayList, pFunc);
+		}
+	}
+	return pAuxArrayList;
+}
+
+
+
+
+/** \brief Guarda los datos de los jugadores en el archivo jugadores.csv (modo texto).
+ *
+ * \param path char*
+ * \param pArrayListSeleccion LinkedList*
+ * \return int
+ *
+ */
+int controller_guardarModoTexto(char* path , LinkedList* pArrayList)
+{
+	int retorno=-1;
+	int largo;
+
+	int auxId;
+	char auxNombre[TAM];
+	char auxCategoria[TAM];
+	int auxtiempo;
+	float auxPromedio;
+
+
+	eParticipantes * participantes;//puntero a estructura jugador en donde se guarda los datos
+	FILE * archivo;
+
+	if(path != NULL && pArrayList != NULL){
+		largo=ll_len(pArrayList);
+		archivo=fopen(path,"w");
+
+		if(archivo != NULL){
+			fprintf(archivo,"id_cuatri,nombre,categoria,tiempo,promedio\n");
+			for(int i=0 ; i<largo;i++){
+
+				participantes=ll_get(pArrayList, i);
+
+				par_getId(participantes, &auxId);
+				par_getNombre(participantes, auxNombre);
+				par_getCategoria(participantes, auxCategoria);
+				par_getTiempo(participantes, &auxtiempo);
+				par_getPromedio(participantes, &auxPromedio);
+
+				fprintf(archivo,"%d,%s,%s,%d,%f\n",auxId,auxNombre,auxCategoria,auxtiempo,auxPromedio);
+
+			}
+			printf("*Se escribieron bien\n");
+			retorno=0;
+		}else{
+			printf("Error\n");
+		}
+	}
+	fclose(archivo);
+    return retorno;
+}
+
+
+/** \brief Ordenar pasajeros
+ *
+ * \param path char*
+ * \param pArrayListPassenger LinkedList*
+ * \return int
+ *
+ */
+int controller_sortPassenger(LinkedList* pArrayList)
+{
+	int retorno=-1;
+	int opcion;
+	int largo;
+	int opcionSort;
+/*
+ * 1-validar
+ * 2-ver si hay algo cargado
+ * 2-preguntar que quiere ordenar
+ * 3-usar las funcion ll_sort (parametros: linkedlist, funcion ordenar pasajeros, orden (1 o 0))
+ */
+	if(pArrayList != NULL){
+
+		largo=ll_len(pArrayList);
+
+		if(largo !=0){
+
+			opcionesOrdenar();
+			if(utn_getInt(&opcion,"Opcion:\n", "Error\n", 1, 6, REINTENTOS)==0){
+				switch(opcion){
+					case 1:
+						opcionsort();
+						if(utn_getInt(&opcionSort, "opcion:\n", "Error\n",  1, 2, REINTENTOS)==0){
+							if(opcion==1){
+								if(ll_sort(pArrayList,Passenger_compareById, 1)==0){
+										printf("Se ordeno correctamente\n");
+										retorno=0;
+								}
+							}else{
+								if(ll_sort(pArrayList,Passenger_compareById, 0)==0){
+									printf("Se ordeno correctamente\n");
+									retorno=0;
+								}
+							}
+						}
+
+						break;
+
+				}
+			}
+		}
+	}
+    return retorno;
+}
+

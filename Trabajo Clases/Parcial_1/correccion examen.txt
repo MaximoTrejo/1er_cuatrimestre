@@ -1,0 +1,12 @@
+David Fernandez16:26
+Parte 1:
+Codigo principal en la biblioteca menu.c - No utiliza camel case, por ejemplo AltaLibros - 
+
+ALTA: bibliotecaLibro.c AltaLibros linea 54 ¿? - 5.e: Ok.
+
+Parte 2:
+Item1: Ok - 
+Item2: bibliotecaLibro.c mostrarGenero linea 436: declara la variable en el for B- - 
+Item3: Ok - 
+Item4: bibliotecaLibro.c mostLibrosNnovela lineas 446 a 455: MAL - 
+Item5: menu.c lineas 159 a 177: MAL

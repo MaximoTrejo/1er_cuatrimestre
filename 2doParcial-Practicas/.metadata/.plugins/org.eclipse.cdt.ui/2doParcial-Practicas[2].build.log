@@ -1,0 +1,10 @@
+17:18:54 **** Incremental Build of configuration Debug for project 2doParcial-Practicas[2] ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LinkedList.o" "..\\src\\LinkedList.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\parser.o" "..\\src\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\2doParcial-Practicas[2].o" "..\\src\\2doParcial-Practicas[2].c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Controller.o" "..\\src\\Controller.c" 
+gcc -o 2doParcial-Practicas[2].exe "src\\2doParcial-Practicas[2].o" "src\\Controller.o" "src\\LinkedList.o" "src\\computer.o" "src\\menu.o" "src\\parser.o" "src\\utn.o" 
+
+17:18:55 Build Finished. 0 errors, 0 warnings. (took 990ms)
+

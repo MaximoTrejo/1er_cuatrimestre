@@ -1,0 +1,24 @@
+/*
+ * participantes.c
+ *
+ *  Created on: 20 nov 2022
+ *      Author: maxim
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include "participantes.h"
+
+
+eParticipantes * list_new(){
+	eParticipantes* pParticipantes;
+
+	//creo un puntero y le asigno un espacio en memoria
+
+	pParticipantes=(eParticipantes*)malloc(sizeof(eParticipantes));
+
+	return pParticipantes;
+}

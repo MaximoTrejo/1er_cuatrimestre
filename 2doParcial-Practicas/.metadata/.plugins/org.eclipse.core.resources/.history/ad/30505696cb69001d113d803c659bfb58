@@ -1,0 +1,44 @@
+/*
+ ============================================================================
+ Name        : 2doParcial-Practicas[2].c
+ Author      : 
+ Version     :
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include "LinkedList.h"
+#include "Controller.h"
+#include "menu.h"
+#include "utn.h"
+#include "parser.h"
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+	int opcion = 0;
+
+	LinkedList * computer=ll_newLinkedList();
+
+	do{
+		opcionesMenu();
+		utn_getInt(&opcion, "Ingrese la opcion", "Error", 1, 11, REINTENTOS);
+			switch(opcion){
+				case 1:
+					if(controller_cargarArchivoDesdeTexto("datos_SP.csv",computer)==1){
+						printf("*Archivos cargados correctamente\n");
+					}else{
+						printf("*No se pudo cargar el archivo\n");
+					}
+					break;
+			}
+		}while(opcion != 11);
+
+
+	return EXIT_SUCCESS;
+}

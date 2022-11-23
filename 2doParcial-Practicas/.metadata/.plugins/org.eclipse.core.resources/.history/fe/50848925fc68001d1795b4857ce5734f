@@ -1,0 +1,23 @@
+/*
+ * participantes.h
+ *
+ *  Created on: 20 nov 2022
+ *      Author: maxim
+ */
+
+#ifndef PARTICIPANTES_H_
+#define PARTICIPANTES_H_
+
+
+typedef struct
+{
+	int id;
+	char nombre[100];
+	char categoria[30];
+	char nacionalidad[30];
+	int idSeleccion;
+}eJugador;
+
+
+
+#endif /* PARTICIPANTES_H_ */

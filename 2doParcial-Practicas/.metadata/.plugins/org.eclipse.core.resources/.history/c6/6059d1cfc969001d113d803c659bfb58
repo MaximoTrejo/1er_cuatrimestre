@@ -1,0 +1,41 @@
+/*
+ * computer.c
+ *
+ *  Created on: 21 nov 2022
+ *      Author: maxim
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "computer.h"
+
+
+
+eComputer * list_new(){
+	eComputer* pComputer;
+
+	//creo un puntero y le asigno un espacio en memoria
+
+	pComputer=(eComputer*)malloc(sizeof(eComputer));
+
+	return pComputer;
+}
+
+eComputer* list_newParametros(char* idStr,char* nombreStr,char* categoriaStr, char* tiempoStr, char* promedioStr){
+
+	eParticipantes* pParticipantes=list_new();
+
+	if( pParticipantes != NULL){
+
+		par_setId(pParticipantes, atoi(idStr));
+		par_setNombre(pParticipantes, nombreStr);
+		par_setCategoria(pParticipantes, categoriaStr);
+		par_setTiempo(pParticipantes,atoi(tiempoStr));
+		par_setPromedio(pParticipantes, atoi(promedioStr));
+
+	}
+
+	return pParticipantes;
+}

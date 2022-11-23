@@ -1,0 +1,40 @@
+/*
+ * menu.h
+ *
+ *  Created on: 5 nov 2022
+ *      Author: maxim
+ */
+
+#define REINTENTOS 5
+#define TAM 500
+
+#ifndef MENU_H_
+#define MENU_H_
+
+////@brief menu principal
+////@fn void opcionesMenu(void);
+void opcionesMenu(void);
+////@brief menu de la opcion de modificar
+////@fn void opcionesMenu(void);
+void menuModificar(void);
+////@brief menu de la opcion de listar
+////@fn void opcionesMenu(void);
+void menuListar(void);
+////@brief menu de la opcion de ordenamiento
+////@fn void opcionesMenu(void);
+void menuCriterioOrdenamiento();
+////@brief menu de la opcion de ordenamiento
+////@fn void opcionesMenu(void);
+void menuElegirOrdenaiento(void);
+////@brief menu de la opcion de ordenamiento
+////@fn void opcionesMenu(void);
+void menuOrdenarJugadores();
+////@brief menu de la opcion de convocar
+////@fn void opcionesMenu(void);
+void menuOpcionesConvocar();
+////@brief menu de la opcion de convocar
+////@fn void opcionesMenu(void);
+void menuConvocaciones();
+
+
+#endif /* MENU_H_ */

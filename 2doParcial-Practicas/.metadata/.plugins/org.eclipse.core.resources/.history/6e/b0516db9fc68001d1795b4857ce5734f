@@ -1,0 +1,120 @@
+////@brief lee un archivo de texto y lo carga en la estructura
+////@fn int controller_cargarJugadoresDesdeTexto(char* path , LinkedList* pArrayListJugador);
+////@param char* path (ruta del archivo)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_cargarJugadoresDesdeTexto(char* path , LinkedList* pArrayListJugador);
+////@brief lee un archivo de binario y lo carga en la estructura
+////@fn int controller_cargarJugadoresDesdeBinario(char* path , LinkedList* pArrayListJugador);
+////@param char* path (ruta del archivo)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_cargarJugadoresDesdeBinario(char* path , LinkedList* pArrayListJugador);
+////@brief carga un nuevo jugador a la lista
+////@fn int controller_agregarJugador(LinkedList* pArrayListJugador);
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_agregarJugador(LinkedList* pArrayListJugador);
+////@brief edita un jugador elegido por el usuario
+////@fn int controller_editarJugador(LinkedList* pArrayListJugador ,LinkedList* pArrayListSeleccion );
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_editarJugador(LinkedList* pArrayListJugador ,LinkedList* pArrayListSeleccion );
+////@brief borra un jugador de la lista elegido por el usuario
+////@fn int controller_removerJugador(LinkedList* pArrayListJugador,LinkedList* pArrayListSeleccion);
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_removerJugador(LinkedList* pArrayListJugador,LinkedList* pArrayListSeleccion);
+////@brief lista jugadores
+////@fn int controller_listarJugadores(LinkedList* pArrayListJugador,LinkedList* pArrayListSeleccion);
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_listarJugadores(LinkedList* pArrayListJugador,LinkedList* pArrayListSeleccion);
+////@brief ordena jugadores
+////@fn int controller_ordenarJugadores(LinkedList* pArrayListJugador);
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_ordenarJugadores(LinkedList* pArrayListJugador);
+////@brief escribe un archivo de texto con los datos de la estructura
+////@fn int controller_guardarJugadoresModoTexto(char* path , LinkedList* pArrayListJugador);
+////@param char* path (ruta del archivo)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_guardarJugadoresModoTexto(char* path , LinkedList* pArrayListJugador);
+////@brief escribe un archivo de binario con los datos de la estructura
+////@fn int controller_guardarJugadoresModoTexto(char* path , LinkedList* pArrayListJugador);
+////@param char* path (ruta del archivo)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_guardarJugadoresModoBinario(char* path , LinkedList* pArrayListJugador);
+////@brief lee un archivo de texto y lo carga en la estructura
+////@fn int controller_cargarSeleccionesDesdeTexto(char* path , LinkedList* pArrayListSeleccion);
+////@param char* path (ruta del archivo)
+////@param LinkedList*  pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_cargarSeleccionesDesdeTexto(char* path , LinkedList* pArrayListSeleccion);
+////@brief lista seleccion
+////@fnint controller_listarSelecciones(LinkedList* pArrayListSeleccion);
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_listarSelecciones(LinkedList* pArrayListSeleccion);
+////@brief ordena seleccion
+////@fn int controller_ordenarSelecciones(LinkedList* pArrayListSeleccion);
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_ordenarSelecciones(LinkedList* pArrayListSeleccion);
+////@brief escribe un archivo de texto con los datos de la seleccion
+////@fn int controller_guardarSeleccionesModoTexto(char* path , LinkedList* pArrayListSeleccion);
+////@param char* path (ruta del archivo)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_guardarSeleccionesModoTexto(char* path , LinkedList* pArrayListSeleccion);
+////@brief busca un id de jugadores
+////@fn int controller_buscarID(LinkedList* pArrayListJugador , int largo , int idModificado);
+////@param int largo (largo de la lista)
+////@param int idModificado (id que el usuario quiere modificar)
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_buscarID(LinkedList* pArrayListJugador , int largo , int idModificado);
+////@brief busca un id de Seleccion
+////@fn int controller_buscarIDSeleccion(LinkedList* pArrayListSeleccion , int largo , int idModificado);
+////@param int largo (largo de la lista)
+////@param int idModificado (id que el usuario quiere modificar)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_buscarIDSeleccion(LinkedList* pArrayListSeleccion , int largo , int idModificado);
+////@brief convoca un jugador
+////@fnint controller_convocarJugadores(LinkedList* pArrayListSeleccion,LinkedList* pArrayListJugador);
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_convocarJugadores(LinkedList* pArrayListSeleccion,LinkedList* pArrayListJugador);
+////@brief lista los jugadores convocados
+////@fnint int controller_listarConvocados(LinkedList* pArrayListJugador,LinkedList* pArrayListSeleccion);
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_listarConvocados(LinkedList* pArrayListJugador,LinkedList* pArrayListSeleccion);
+////@brief genera un archivo binario de los jugadores convocados
+////@fnint int controller_generarJugadoresModoBinario(char* path , LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@param char* path (ruta del archivo)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_generarJugadoresModoBinario(char* path , LinkedList* pArrayListJugador, LinkedList* pArrayListSeleccion);
+////@brief busca la confederacion de seleccion
+////@fnint int controller_buscarConfederacion(LinkedList* pArrayListSeleccion ,int jugadrIdSeleccion ,char *tipo);
+////@param int jugadrIdSeleccion (id jugador)
+////@param char *tipo (confederacion de selecciones)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_buscarConfederacion(LinkedList* pArrayListSeleccion ,int jugadrIdSeleccion ,char *tipo);
+////@brief desconvocar a un jugador
+////@fnint int controller_quitarJugadores(LinkedList* pArrayListSeleccion,LinkedList* pArrayListJugador);
+////@param LinkedList* pArrayListJugador(puntero a la lista)
+////@param LinkedList* pArrayListSeleccion(puntero a la lista)
+////@return 1[BIEN] | -1[MAL]
+int controller_quitarJugadores(LinkedList* pArrayListSeleccion,LinkedList* pArrayListJugador);
