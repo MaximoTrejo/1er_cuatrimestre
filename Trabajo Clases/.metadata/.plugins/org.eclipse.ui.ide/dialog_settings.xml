@@ -19,11 +19,14 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\maxim\Desktop\TP_Laboratorio_y_Programacion_1-main\TP_Laboratorio_y_Programacion_1-main\tp3_windows"/>
 			<item value="C:\Users\maxim\Desktop\FINAL LABO[I]-20221119T223922Z-001\FINAL LABO[I]\Final_Laboratorio[I] Elbey"/>
 			<item value="C:\Users\maxim\Desktop\eclipse_tp3_v4\eclipse_tp3_v4\tp3_windows"/>
 			<item value="C:\Users\maxim\Desktop\Trabajo Clases\tp3_windows"/>
 			<item value="C:\Users\maxim\Desktop\Trabajo Clases\Ordenamiento"/>
 			<item value="C:\Users\maxim\Desktop\Trabajo Clases\12-09-22 Ordenamiento"/>
 		</list>
+	</section>
+	<section name="NewWizardAction">
 	</section>
 </section>

@@ -1,0 +1,91 @@
+/*
+ * menu.c
+ *
+ *  Created on: 2 oct 2022
+ *      Author: maxim
+ */
+
+
+
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "bibliotecaLibro.h"
+#include "menu.h"
+#include "utn.h"
+
+
+void menuInformes(){
+    printf("\nMenu de informes"
+            "\n1. Total y promedio de los importes, y cuántos libros superan ese promedio."
+            "\n2. Cantidad de libros cuya fecha de publicación es anterior a 01/01/2000."
+    		"\n3.Salir\n");
+}
+
+
+void menulistar(){
+	 printf("\nMenu de listar"
+	            "\n1.Todas las editoriales."
+	            "\n2.Todos los países."
+	            "\n3.Todos los autores."
+	            "\n4.Todos los libros."
+			 	"\n5.Ordenar albumes por Importe o Titulo"
+			 	"\n6.mostrar generos"
+			 	"\n7.mostrar libros cuyo genero no sea novela "
+				"\n8.mostrar libros ARG que correspondan a una editorial determinada  "
+			 	"\n9.Salir.\n");
+}
+
+
+void menuOpciones(void){
+	printf("Bienvenido");
+    printf("\n1) Alta.");
+    printf("\n2) Modificacion.");
+    printf("\n3) Baja.");
+    printf("\n4) Informar.");
+    printf("\n5) Listar.");
+    printf("\n6) Salir.");
+}
+
+void inicializarAE(eLibro libros[],int tam){
+	for(int i=0; i<tam; i++)
+	{
+			libros[i].estado = LIBRE;
+	}
+}
+
+//Devuelve el indice del proximo empleado inactivo que encuentre
+int BuscarLibre(eLibro libros[],int tam)
+{
+	int indice;
+	indice = -1;//Si no encuentra un usuario inactivo-> Si el array está lleno.
+	if(libros !=NULL && tam>0){
+
+		for(int i=0; i<tam; i++)
+		{
+			if(libros[i].estado == LIBRE)
+			{
+				indice = i;
+				break;
+			}
+		}
+	}
+	return indice;
+}
+
+//Devuelve el indice de un empleado en cuestion
+int buscarID(eLibro libros[],int tam,int legajoABuscar)
+{
+	int indice;
+	indice = -1;//Si no encuentra al usuario
+
+	for(int i=0; i<tam; i++)
+    {
+	   if(libros[i].estado == OCUPADO && libros[i].codLibro == legajoABuscar )
+	   {
+		   indice = i;
+		   break;
+	   }
+    }
+	return indice;
+}

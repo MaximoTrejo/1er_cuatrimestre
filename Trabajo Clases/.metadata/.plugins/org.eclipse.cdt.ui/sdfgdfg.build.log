@@ -1,0 +1,11 @@
+14:41:22 **** Rebuild of configuration Debug for project sdfgdfg ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\sdfgdfg.o" "..\\src\\sdfgdfg.c" 
+..\src\sdfgdfg.c: In function 'main':
+..\src\sdfgdfg.c:26:25: error: storage size of 'agenda' isn't known
+   26 |  struct datosPersonales agenda;
+      |                         ^~~~~~
+..\src\sdfgdfg.c:26:25: warning: unused variable 'agenda' [-Wunused-variable]
+
+14:41:22 Build Failed. 1 errors, 1 warnings. (took 232ms)
+

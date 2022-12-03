@@ -74,9 +74,25 @@ typedef struct
 
 
 
-
-
-
+////@brief busca un lugar libre en todo el array de libros
+////@fn int BuscarLibre(eLibro libros[],int tam);
+////@param eLibro libros[](llamo a todo el string de la estructura libros)
+////@param int tam(variable de enteros que psa el tamaño del string)
+////@return indice -1[si no encontro ninguno] | indice del lugar libre si encontro uno
+int BuscarLibre(eLibro libros[],int tam);
+////@brief inicializo toda el array de la estrucura libros con el estado en libre
+////@fn void inicializarAE(eLibro libros[],int tam);
+////@param eLibro libros[](llamo a todo el string de la estructura libros)
+////@param int tam(variable de enteros que psa el tamaño del string)
+////@return void
+void inicializarAE(eLibro libros[],int tam);
+////@brief busco el id
+////@fn int buscarID(eLibro libros[],int tam,int legajoABuscar);
+////@param eLibro libros[](llamo a todo el string de la estructura libros)
+////@param int tam(variable de enteros que psa el tamaño del string)
+////@param int legajoABuscar(variable de enteros que paso el legajo a buscar )
+////@return indice de del id buscado
+int buscarID(eLibro libros[],int tam,int legajoABuscar);
 ////@brief mostrar la estructura pais
 ////@fn void mostrarPais(ePais pais[] , int tam)
 ////@param ePais pais[](llamo a todo el string de la estructura pais)
@@ -128,9 +144,7 @@ int borrarLibros(eLibro libros[] , int tam,int idMod);
 ////@param eAutor autor[](llamo a todo el string de la estructura autor)
 ////@param eEditorial editorial[](llamo a todo el string de la estructura editorial)
 ////@return void
-
-void mostrar(eLibro libros[],eAutor autor[] , eEditorial editorial[],eGenero genero[]);
-//void mostrar(eLibro libros[],eAutor autor[] , eEditorial editorial[]);///////////////////////////////////////////////////////////////modi
+void mostrarIndividual(eLibro libros[],eAutor autor[] , eEditorial editorial[],eGenero genero[]);
 ////@brief modifica un libro
 ////@fn int modificarLibros(eLibro libros[] , int tam,int idMod,eAutor autor[],ePais pais[] ,eEditorial editorial[])
 ////@param eLibro libros[](llamo a todo el string de la estructura libros)
@@ -139,10 +153,6 @@ void mostrar(eLibro libros[],eAutor autor[] , eEditorial editorial[],eGenero gen
 ////@param eEditorial editorial[](llamo a todo el string de la estructura editorial)
 ////@return retorno -1[ERROR] | retorno 0[bien]
 int modificarLibros(eLibro libros[] , int tam,int idMod,eAutor autor[],ePais pais[] ,eEditorial editorial[],eGenero genero[]);
-////@brief menu con las opciones de modificar
-////@fn void menuModificar(void);
-////@return void
-void menuModificar(void);
 ////@brief mostrar la estructura libros
 ////@fn void mostrarlibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial[]);
 ////@param ePais pais[](llamo a todo el string de la estructura pais)
@@ -150,9 +160,7 @@ void menuModificar(void);
 ////@param eLibro libros[](llamo a todo el string de la estructura libros)
 ////@param eLibro eEditorial editorial[](llamo a todo el string de la estructura editorial)
 ////@return void
-
-
-void mostrarlibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial[],eGenero genero[]);
+void mostrarLibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial[],eGenero genero[]);
 //void mostrarlibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial[]);///////////////////////////////////////////////////////////////modi
 ////@brief mostrar la estructura autor
 ////@fn void mostrarAutor(eAutor autor[] , int tam , ePais pais[]);
@@ -192,20 +200,38 @@ void mostrarEditorial(eEditorial editorial[] , int tam);
 ////@param eEditorial editorial[](llamo a todo el string de la estructura editorial)
 ////@param ePais pais[](llamo a todo el string de la estructura pais)
 ////@return retorno -1[ERROR] | retorno 0[bien]
-int AltaLibros(eLibro libros[] ,eAutor autor[],ePais pais[] ,eEditorial editorial[], eGenero genero[]);
-
-
-
-
-
+int altaLibros(eLibro libros[] ,eAutor autor[],ePais pais[] ,eEditorial editorial[], eGenero genero[]);
+//void mostrarGenero(eGenero genero[],int tam);
+////@brief mostrar estructura genero
+////@fn void mostrarAutor(eAutor autor[] , int tam , ePais pais[]);
+////@param ePais pais[](llamo a todo el string de la estructura pais)
+////@param int tam(variable de enteros que psa el tamaño del string)
+////@param eAutor autor[](llamo a todo el string de la estructura autor)
+////@return void
 void mostrarGenero(eGenero genero[],int tam);
+////@brief carga manual de la estrucura genero
+////@fn void harcodeoGenero(eGenero genero[],int tam);
+////@param eEditorial editorial[](llamo a todo el string de la estructura editorial)
+////@param int tam(variable de enteros que psa el tamaño del string)
+////@return void
 void harcodeoGenero(eGenero genero[],int tam);
+////@brief mostrar libros cuyo genero no sea novela
+////@fn void mostLibrosNnovela(eLibro libros[], int tam,eAutor autor[] ,eEditorial editorial[]);
+////@param eLibro libros[](llamo a todo el string de la estructura libros)
+////@param eAutor autor[](llamo a todo el string de la estructura autor)
+////@param eEditorial editorial[](llamo a todo el string de la estructura editorial)
+////@param int tam(variable de enteros que psa el tamaño del string)
+////@return retorno -1[ERROR] | retorno 0[bien]
+int mostLibrosNnovela(eLibro libros[], int tam,eAutor autor[] ,eEditorial editorial[]);
+////@brief mostrar libros ARG que correspondan a una editorial determinada
+////@fn int autoresAporEDet(eLibro libros[], int tam,eEditorial editorial[] ,eAutor autor[]);
+////@param eLibro libros[](llamo a todo el string de la estructura libros)
+////@param eAutor autor[](llamo a todo el string de la estructura autor)
+////@param eEditorial editorial[](llamo a todo el string de la estructura editorial)
+////@param int tam(variable de enteros que psa el tamaño del string)
+////@return retorno -1[ERROR] | retorno 0[bien]
+int autoresAporEDet(eLibro libros[], int tam,eEditorial editorial[] ,eAutor autor[] ,eGenero genero[]);
 
 
-//void mostLibrosNnovela(eLibro libros[], int tam,eAutor autor[] ,eEditorial editorial[],eGenero genero[]);
-void mostLibrosNnovela(eLibro libros[], int tam,eAutor autor[] ,eEditorial editorial[]);
-//void autoresAporEDet(eLibro libros[], int tam,eEditorial editorial[] , int buscarEditorial ,eAutor autor[]);
-
-//void mostLibrosNnovela(eLibro libros[], int tam,eAutor autor[] ,eEditorial editorial[]);
 
 #endif /* BIBLIOTECALIBRO_H_ */

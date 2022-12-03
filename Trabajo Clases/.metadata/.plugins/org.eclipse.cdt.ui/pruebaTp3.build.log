@@ -1,1 +1,34 @@
-Info: Nothing to build for pruebaTp3
+18:49:37 **** Rebuild of configuration Debug for project pruebaTp3 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Controller.o "..\\Controller.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o outputs.o "..\\outputs.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Seleccion.o "..\\Seleccion.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o Jugador.o "..\\Jugador.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o parser.o "..\\parser.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o input.o "..\\input.c" 
+..\input.c: In function 'verificarConfirmacion':
+..\input.c:19:2: warning: implicit declaration of function 'pedirCaracter' [-Wimplicit-function-declaration]
+   19 |  pedirCaracter(&respuesta, mensaje);
+      |  ^~~~~~~~~~~~~
+..\input.c: In function 'utn_getChar':
+..\input.c:39:7: warning: implicit declaration of function 'getChar'; did you mean 'getchar'? [-Wimplicit-function-declaration]
+   39 |    if(getChar(aux)==1)
+      |       ^~~~~~~
+      |       getchar
+..\input.c:52:2: warning: implicit declaration of function 'SizeString' [-Wimplicit-function-declaration]
+   52 |  SizeString(pResultado);
+      |  ^~~~~~~~~~
+..\input.c: In function 'getChar':
+..\input.c:61:7: warning: implicit declaration of function 'myGets' [-Wimplicit-function-declaration]
+   61 |   if (myGets(buffer, sizeof(buffer)) == 0 && esNumericaChar(buffer) == 1) {
+      |       ^~~~~~
+..\input.c:61:46: warning: implicit declaration of function 'esNumericaChar' [-Wimplicit-function-declaration]
+   61 |   if (myGets(buffer, sizeof(buffer)) == 0 && esNumericaChar(buffer) == 1) {
+      |                                              ^~~~~~~~~~~~~~
+gcc "-LC:\\Users\\maxim\\Desktop\\TP_Laboratorio_y_Programacion_1-main\\TP_Laboratorio_y_Programacion_1-main\\tp3_windows" -o pruebaTp3.exe Controller.o Jugador.o Seleccion.o input.o main.o outputs.o parser.o -lLinkedList 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot find -lLinkedList
+collect2.exe: error: ld returned 1 exit status
+
+18:49:40 Build Failed. 1 errors, 5 warnings. (took 2s.883ms)
+

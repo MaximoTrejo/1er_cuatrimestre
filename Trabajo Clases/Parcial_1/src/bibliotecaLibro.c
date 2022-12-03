@@ -14,8 +14,50 @@
 
 static int dameUnIdNuevo(void);
 
+void inicializarAE(eLibro libros[],int tam){
+	for(int i=0; i<tam; i++)
+	{
+			libros[i].estado = LIBRE;
+	}
+}
 
-int AltaLibros(eLibro libros[] ,eAutor autor[],ePais pais[] ,eEditorial editorial[], eGenero genero[]){
+//Devuelve el indice del proximo empleado inactivo que encuentre
+int BuscarLibre(eLibro libros[],int tam)
+{
+	int indice;
+	indice = -1;//Si no encuentra un usuario inactivo-> Si el array está lleno.
+	if(libros !=NULL && tam>0){
+
+		for(int i=0; i<tam; i++)
+		{
+			if(libros[i].estado == LIBRE)
+			{
+				indice = i;
+				break;
+			}
+		}
+	}
+	return indice;
+}
+
+//Devuelve el indice de un empleado en cuestion
+int buscarID(eLibro libros[],int tam,int legajoABuscar)
+{
+	int indice;
+	indice = -1;//Si no encuentra al usuario
+
+	for(int i=0; i<tam; i++)
+    {
+	   if(libros[i].estado == OCUPADO && libros[i].codLibro == legajoABuscar )
+	   {
+		   indice = i;
+		   break;
+	   }
+    }
+	return indice;
+}
+
+int altaLibros(eLibro libros[] ,eAutor autor[],ePais pais[] ,eEditorial editorial[], eGenero genero[]){
 	int retorno=-1;//validacion que esta todo ok
 	char auxTitulo[TAM];//aux donde se va a cargar el dato
 	int auxDia;//aux donde se va a cargar el dato
@@ -50,7 +92,6 @@ int AltaLibros(eLibro libros[] ,eAutor autor[],ePais pais[] ,eEditorial editoria
 										libros->idAutor=auxAutor;
 										libros->idEditorial=auxEditorial;
 										libros->idGenero=auxGenero;
-
 										retorno=0;
 									}
 								}
@@ -140,44 +181,22 @@ int modificarLibros(eLibro libros[] , int tam,int idMod,eAutor autor[],ePais pai
 int borrarLibros(eLibro libros[] , int tam,int idMod){
 
 	int retorno=-1;
-	int confirmar;
+
 	if(libros !=NULL && tam > 0 && idMod >= 0){
 
 		for(int i=0;i<tam;i++){
 			if(libros[i].estado==OCUPADO && libros[i].codLibro==idMod){
-				if(utn_getInt(&confirmar,"Dar de baja?[1(S)|2(N)]","Error",1, 2, REINTENTOS)==0){
-					libros[i].estado=LIBRE;
-					printf("El dato se elimino correctamente\n");
-					retorno=0;
-				}else{
-					printf("El dato no se elimino correctamente\n");
-				}
+
+				libros[i].estado=LIBRE;
+				printf("El dato se elimino correctamente\n");
+				retorno=0;
+
 			}
 		}
 
 	}
-
 	return retorno;
 }
-
-
-
-
-
-void menuModificar(void){
-	printf("MODIFICACION");
-    printf("\n1) Titulo.");
-    printf("\n2) FechaPublicacion.");
-    printf("\n3) importe.");
-    printf("\n4) Autor.");
-    printf("\n5) Editorial.");
-    printf("\n6) Genero.");
-    printf("\n7) Salir.");
-}
-
-
-
-
 
 static int dameUnIdNuevo(void) //privada del archivo
 {
@@ -246,7 +265,7 @@ void mostrarAutor(eAutor autor[] , int tam , ePais pais[]){
 }
 
 //prueba
-void mostrarlibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial[],eGenero genero[]){
+void mostrarLibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial[],eGenero genero[]){
 
 	if(libros != NULL && autor!= NULL && editorial != NULL && genero !=NULL && tam > 0 ) {
 
@@ -259,7 +278,7 @@ void mostrarlibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial
 							if(libros[i].idEditorial == editorial[h].codEditorial){
 								for (int g=0; g<5; g++ ){
 									if(libros[i].idGenero == genero[g].codGenero){
-										mostrar(&libros[i],&autor[j], &editorial[h], &genero[g]);
+										mostrarIndividual(&libros[i],&autor[j], &editorial[h], &genero[g]);
 									}
 								}
 							}
@@ -272,43 +291,11 @@ void mostrarlibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial
 		printf("ERROR");
 	}
 }
-void mostrar(eLibro libros[],eAutor autor[] , eEditorial editorial[],eGenero genero[]){
+void mostrarIndividual(eLibro libros[],eAutor autor[] , eEditorial editorial[],eGenero genero[]){
 	printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\t%s\n",libros->codLibro,libros->titulo,libros->FechaPublicacion.dia,libros->FechaPublicacion.mes,libros->FechaPublicacion.anio,libros->importe ,autor->nombre,editorial->descripcion,genero->descripcion);
 }
 
 
-//bien
-/*
-void mostrarlibros(eLibro libros[],int tam ,eAutor autor[] ,eEditorial editorial[]){
-
-	if(libros != NULL && autor!= NULL && editorial != NULL && tam > 0 ) {
-
-		printf("ID\tTITULO\tDIA\tMES\tAÑO\tIMPORTE\tDESCRIPCIONA\tDESCRIPCIONE\n");
-		for(int i=0;i<tam;i++){
-			if(libros[i].estado==OCUPADO){
-				for(int j=0; j<3; j++ ){
-					if(libros[i].idAutor == autor[j].codAutor ){
-						for(int h=0; h<3; h++ ){
-							if(libros[i].idEditorial == editorial[h].codEditorial){
-								mostrar(&libros[i],&autor[j], &editorial[h]);
-							}
-						}
-					}
-				}
-			}
-		}
-	}else{
-		printf("ERROR");
-	}
-}
-void mostrar(eLibro libros[],eAutor autor[] , eEditorial editorial[]){
-	printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\n",libros->codLibro,libros->titulo,libros->FechaPublicacion.dia,libros->FechaPublicacion.mes,libros->FechaPublicacion.anio,libros->importe ,autor->nombre,editorial->descripcion);
-}
-
-void mostrar(eLibro libros[],eAutor autor[] , eEditorial editorial[],int indiceI ,int indiceJ){
-	printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\n",libros[indiceI].codLibro,libros[indiceI].titulo,libros[indiceI].FechaPublicacion.dia,libros[indiceI].FechaPublicacion.mes,libros[indiceI].FechaPublicacion.anio,libros[indiceI].importe ,autor[indiceJ].nombre,editorial[indiceJ].descripcion);
-}
-*/
 float TotalImportes(eLibro libros[],int tam , float * promedio){
 	float total=0;
 	int contImporte=0;
@@ -416,24 +403,12 @@ void harcodeoGenero(eGenero genero[],int tam){
 	}
 }
 
-/*
-void harcodeoEditorial(eEditorial editorial[],int tam){
-	eEditorial auxEditorial[3]={
-		{1,"descripcion1",OCUPADO},
-		{2,"descripcion2",OCUPADO},
-		{3,"descripcion3",OCUPADO},
-	};
-	for(int i=0;i<3;i++){
-		editorial[i]=auxEditorial[i];
-	}
-}
-
-*/
 
 void mostrarGenero(eGenero genero[],int tam){
+	int i;
 	if(genero != NULL && tam>0){
 		printf("CODGENERO\tDESCRIPCION\n");
-		for(int i=0;i<tam;i++){
+		for(i=0;i<tam;i++){
 			if(genero[i].estado==OCUPADO){
 				printf("%d\t\t%s\t\n",genero[i].codGenero,genero[i].descripcion);
 			}
@@ -441,47 +416,48 @@ void mostrarGenero(eGenero genero[],int tam){
 	}
 }
 
-
-//prueba
-
-void mostLibrosNnovela(eLibro libros[], int tam,eAutor autor[] ,eEditorial editorial[],eGenero genero[]){
-	printf("ID\tTITULO\tDIA\tMES\tAÑO\tIMPORTE\tDESCRIPCIONA\tDESCRIPCIONE\tGENERO\n");
-	for(int i=0;i<tam;i++){
-		if(libros[i].estado==OCUPADO && genero[i].codGenero != 5){
-			//mostrarlibros(libros, tam, autor, editorial);
-			//printf(printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\n",libros->codLibro,libros->titulo,libros->FechaPublicacion.dia,libros->FechaPublicacion.mes,libros->FechaPublicacion.anio,libros->importe ,autor->nombre,editorial->descripcion););
-			printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\t%s\n",libros[i].codLibro,libros[i].titulo,libros[i].FechaPublicacion.dia,libros[i].FechaPublicacion.mes,libros[i].FechaPublicacion.anio,libros[i].importe ,autor[i].nombre,editorial[i].descripcion,genero[i].descripcion);
-		}
-	}
-}
-
-/*
-void mostLibrosNnovela(eLibro libros[], int tam,eAutor autor[] ,eEditorial editorial[]){
+int mostLibrosNnovela(eLibro libros[], int tam,eAutor autor[] ,eEditorial editorial[]){
+	int retorno=-1;
 	printf("ID\tTITULO\tDIA\tMES\tAÑO\tIMPORTE\tDESCRIPCIONA\tDESCRIPCIONE\n");
 	for(int i=0;i<tam;i++){
+
 		if(libros[i].estado==OCUPADO && libros[i].idGenero != 5){
-			//mostrarlibros(libros, tam, autor, editorial);
-			//printf(printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\n",libros->codLibro,libros->titulo,libros->FechaPublicacion.dia,libros->FechaPublicacion.mes,libros->FechaPublicacion.anio,libros->importe ,autor->nombre,editorial->descripcion););
 			printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\n",libros[i].codLibro,libros[i].titulo,libros[i].FechaPublicacion.dia,libros[i].FechaPublicacion.mes,libros[i].FechaPublicacion.anio,libros[i].importe ,autor[i].nombre,editorial[i].descripcion);
+			retorno=0;
 		}
 	}
+	return retorno;
 }
-*/
 
-/*
-void autoresAporEDet(eLibro libros[], int tam,eEditorial editorial[] ,eAutor autor[]){
+
+
+int autoresAporEDet(eLibro libros[], int tam,eEditorial editorial[] ,eAutor autor[] ,eGenero genero[]){
 
 	int buscarEditorial;
+	int retorno=-1;
 	mostrarEditorial(editorial, tam);
 	if(utn_getInt(&buscarEditorial, "elige la editorial determianada", "Error", 1, 3, REINTENTOS)==0){
 		if(buscarEditorial >0){
 			for(int i=0;i<tam;i++){
-				if(libros[i].idEditorial == buscarEditorial && libros[i].idAutor == 3 ){
-				   	printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\n",libros[i].codLibro,libros[i].titulo,libros[i].FechaPublicacion.dia,libros[i].FechaPublicacion.mes,libros[i].FechaPublicacion.anio,libros[i].importe ,autor[i].nombre,editorial[i].descripcion);
+
+				for(int j=0; j<3; j++ ){
+					for(int h=0; h<3; h++ ){
+						for (int g=0; g<5; g++ ){
+							if(libros[i].idAutor == autor[j].codAutor ){
+								if(libros[i].idEditorial == editorial[h].codEditorial){
+									if(libros[i].idGenero == genero[g].codGenero){
+										if(libros[i].idEditorial == buscarEditorial && libros[i].idAutor == 3){
+											printf("%d\t%s\t%d\t%d\t%d\t%f\t%s\t%s\t%s\n",libros[i].codLibro,libros[i].titulo,libros[i].FechaPublicacion.dia,libros[i].FechaPublicacion.mes,libros[i].FechaPublicacion.anio,libros[i].importe ,autor[j].nombre,editorial[h].descripcion ,genero[g].descripcion);
+											retorno=0;
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
 	}
-
+	return retorno;
 }
-*/

@@ -1,7 +1,1 @@
-20:06:07 **** Incremental Build of configuration Debug for project Parcial_1 ****
-Info: Internal Builder is used for build
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\bibliotecaLibro.o" "..\\src\\bibliotecaLibro.c" 
-gcc -o Parcial_1.exe "src\\Parcial_1.o" "src\\bibliotecaLibro.o" "src\\menu.o" "src\\utn.o" 
-
-20:06:07 Build Finished. 0 errors, 0 warnings. (took 415ms)
-
+Info: Nothing to build for Parcial_1
